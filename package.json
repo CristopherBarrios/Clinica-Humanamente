@@ -1,0 +1,42 @@
+{
+  "name": "clinica-humanamente",
+  "version": "1.0.0",
+  "description": "* Diseño y prototipo figma:\r https://www.figma.com/file/OuOeAiJtRdUHsBufH3QkrK/ClinicaHumanamente?node-id=0%3A1\r * User Story Mapping: https://docs.google.com/drawings/d/1JkCmfyOXOY5zbGH1XlYrVlpHFVb3LaWjkgauszvl2qQ/edit?usp=sharing\r * Sprint1:\r https://clinicahumanamentegt.atlassian.net/jira/software/projects/CLIN5525/boards/1",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CristopherBarrios/Clinica-Humanamente.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CristopherBarrios/Clinica-Humanamente/issues"
+  },
+  "homepage": "https://github.com/CristopherBarrios/Clinica-Humanamente#readme",
+  "devDependencies": {
+    "@babel/core": "^7.11.1",
+    "@babel/preset-env": "^7.11.0",
+    "@babel/preset-react": "^7.10.4",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.1.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
+  },
+  "dependencies": {
+    "css-loader": "^4.2.1",
+    "file-loader": "^6.0.0",
+    "react": "^16.13.1",
+    "react-bootstrap": "^1.3.0",
+    "react-dom": "^16.13.1",
+    "react-router": "^5.2.0",
+    "react-router-dom": "^5.2.0",
+    "style-loader": "^1.2.1"
+  }
+}
