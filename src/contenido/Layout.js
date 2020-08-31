@@ -5,6 +5,21 @@ import Home from './Home'
 import Contactanos from './Contactanos'
 import {Route, BrowserRouter as Router, Link} from 'react-router-dom'
 class Layout extends React.Component{
+    constructor(){
+        super();
+        this.state = {
+            page: 1
+        }
+    }
+    switchp(num){
+        var curp = this.state.page;
+        var bttn = document.getElementById('l' + curp);
+        var bttn2 = document.getElementById('l' + num);
+        bttn.classList.toggle('ac');
+        bttn2.classList.toggle('ac');
+        this.setState({page: num});
+    }
+
     render(){
         return(
 
@@ -15,16 +30,16 @@ class Layout extends React.Component{
                 </div>
                 <div style={{height: '5%', width: "100%", backgroundColor: '#07a6f3'}}>
                     <div className="nav">
-                        <Link className="active" to='/'>
+                        <Link id='l1' onClick={() => {this.switchp(1)}} className="navb ac" to='/'>
                             HOME
                         </Link>
-                        <Link to='/'>
+                        <Link id='l2' onClick={() => {this.switchp(2)}} className="navb" to='/'>
                         SERVICIOS
                         </Link>
-                        <Link to='/prueba-depresion'>
+                        <Link id='l3' onClick={() => {this.switchp(3)}} className="navb" to='/prueba-depresion'>
                         PRUEBAS
                         </Link>
-                        <Link to='/Contactanos'>
+                        <Link id='l4' onClick={() => {this.switchp(4)}} className="navb" to='/Contactanos'>
                         CONTACTANOS
                         </Link>
                     </div>
