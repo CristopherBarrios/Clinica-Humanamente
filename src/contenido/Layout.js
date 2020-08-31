@@ -2,6 +2,7 @@ import React from 'react'
 import '../estilo/style.css'
 import Prueba from './Prueba'
 import Home from './Home'
+import Contactanos from './Contactanos'
 import {Route, BrowserRouter as Router, Link} from 'react-router-dom'
 class Layout extends React.Component{
     render(){
@@ -23,7 +24,7 @@ class Layout extends React.Component{
                         <Link to='/prueba-depresion'>
                         PRUEBAS
                         </Link>
-                        <Link to='/'>
+                        <Link to='/Contactanos'>
                         CONTACTANOS
                         </Link>
                     </div>
@@ -31,6 +32,7 @@ class Layout extends React.Component{
                 <div>
                     <Route path='/' exact render={(props) => <Home {...props}/>} />
                     <Route path='/prueba-depresion' exact render={(props) => <Prueba {...props}/>} />
+                    <Route path='/Contactanos' exact render={(props) => <Contactanos {...props}/>} />
                 </div>
             </Router>
         )
