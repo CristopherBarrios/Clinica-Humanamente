@@ -112,6 +112,7 @@ class Prueba extends React.Component{
             var bttn2 = document.getElementById('bt2');
             bttn.classList.toggle('sele');
             bttn2.classList.toggle('sele');
+            this.setState({puntos: 0});
         }
         
     }
@@ -151,18 +152,18 @@ class Prueba extends React.Component{
                         ha sentido molestias debido a cualquiera de los
                         siguientes problemas?  
                     </h2>
-                    <h2 className="tituloc">
-                        (Marque con un “✔” para indicar su respuesta)
-                    </h2>
                     <br></br>
                         {questionsList}
                         <h1 className="conten" style={{textAlign: 'center', marginBottom: '2%'}}>
                             {'Puntaje Final: ' + this.state.puntos}
                         </h1>
+                        <p className="conten" style={{ textAlign: 'center' }}>
+                        Un puntaje mayor a 10 es significativo, consulte a la clinca
+                        </p>
                 </div>  
                 <div>
-                    <button id='bt1' onClick={() => {this.switchPrueba(1)}} className="btt" style={{width: '90%', height: '5%'}}>PRUEBA DE DEPRESION</button> 
-                    <button id='bt2' onClick={() => {this.switchPrueba(2)}} className="btt sele" style={{width: '90%', height: '5%'}}>PRUEBA DE ANSIEDAD</button> 
+                    <button id='bt1' onClick={() => {this.switchPrueba(1)}} className="btt" style={{width: '90%', height: '50px'}}>PRUEBA DE DEPRESION</button> 
+                    <button id='bt2' onClick={() => {this.switchPrueba(2)}} className="btt sele" style={{width: '90%', height: '50px'}}>PRUEBA DE ANSIEDAD</button> 
                 </div>
             </div>
         )

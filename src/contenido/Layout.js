@@ -34,6 +34,10 @@ class Layout extends React.Component{
                     <Route path='/prueba-depresion' exact render={(props) => <Prueba {...props}/>} />
                     <Route path='/Contactanos' exact render={(props) => <Contactanos {...props}/>} />
                 </div>
+
+                <div style={{ paddingTop: '1%', color: '#014e73', fontSize: '22px', paddingLeft: '2%', backgroundColor: '#07a6f3', position: "relative", height: '5%', width: '98%', bottom: '0'}}>
+                    Clinica Humanamente ©
+                </div>
             </Router>
         )
     }
