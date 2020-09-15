@@ -1,4 +1,5 @@
 import React from 'react'
+import Clinica from '../estilo/images/clinica.jpg'
 
 class Home extends React.Component{
     render(){
@@ -6,7 +7,7 @@ class Home extends React.Component{
         <div>
             <div className='Gridh'>
                 <div style={{height: '100%', width: '75%'}}>
-                    <img style={{height: '95%', width: '100%', marginTop: '0.5%', marginLeft: '15%'}} src='https://scontent-mia3-2.xx.fbcdn.net/v/t1.0-9/83970114_1900671686731220_1765311045615747072_n.jpg?_nc_cat=109&_nc_sid=09cbfe&_nc_ohc=Nptr6hJ7sRoAX8mocxn&_nc_ht=scontent-mia3-2.xx&oh=9e19e305ff18d59bef2120577601b44c&oe=5F5EC55A' />
+                    <img style={{height: '95%', width: '100%', marginTop: '0.5%', marginLeft: '15%'}} src={Clinica} />
                 </div>
                 <div>
                     <div style={{marginTop: '4%', marginLeft: '25%', fontSize: '28px', textAlign: 'justify', color:'#016495'}}>
