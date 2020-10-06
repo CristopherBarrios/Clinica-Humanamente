@@ -8,29 +8,29 @@ import Mail from '../estilo/images/mail.png'
 class Contactanos extends React.Component{
     render(){
         return(              
-            <div>
-                <div className='Gridh' style={{marginTop: '0%', height:'73%'}}>
+            <div className='contactp'>
+                <div className='Gridcont'>
                     <div style={{height: '100%', width: '75%'}}>
-                        <img style={{height: '40%', width: '100%', marginTop: '70%', marginLeft: '1%'}} src={Clinica} />
+                        <img className='contlo' style={{height: '40%', width: '100%', marginTop: '70%', marginLeft: '1%'}} src={Clinica} />
                     </div>
                     <div>
-                        <div style={{marginTop: '4%', marginLeft: '25%', fontSize: '28px', textAlign: 'justify', color:'#016495'}}>
-                            <p style={{marginLeft: '10%'}}>Clinica Humanamente</p>
+                        <div className='lemac' style={{marginTop: '4%', marginLeft: '25%', fontSize: '28px', textAlign: 'justify', color:'#016495'}}>
+                            <p className='lemac1' style={{marginLeft: '10%'}}>Clinica Humanamente</p>
                             <p>“Bienestar y confianza humanamente”</p>
                         </div>
 
-                        <div className='Gridh' style={{fontSize: '19px', fontWeight: 'bold'}}>
-                            <img src={Llamada} style={{marginTop: '15%', marginLeft: '50%',height: '40%', width: '23%'}} />
+                        <div className='Gridcont2' style={{fontSize: '19px', fontWeight: 'bold'}}>
+                            <img src={Llamada} className='img1' />
                             <div>
                                 <p>(502) 2369-3238</p>
                                 <p>(502) 2369-0709</p>
                                 <p>(502) 2221-7449</p>
                             </div>
-                            <img src={Mail} style={{marginLeft: '50%',height: '100%', width: '20%'}}/>
+                            <img src={Mail} className='img2'/>
                             <p>informacion@clinicahumanamente.com</p>
-                            <img src={Location} style={{marginLeft: '50%',height: '100%', width: '20%'}}/>
+                            <img src={Location} className='img2'/>
                             <p>Visitenos en: 20 av "A" 0-49 zona 15 Vista Hermosa II</p>
-                            <img src={Reloj} style={{marginTop: '20%', marginLeft: '50%', height: '35%', width: '25%'}}/>
+                            <img src={Reloj} className='img1'/>
                             <div>
                                 <p>Horario entre semana:</p>
                                 <p>Lunes a viernes 8:00 AM - 5:00 PM</p>

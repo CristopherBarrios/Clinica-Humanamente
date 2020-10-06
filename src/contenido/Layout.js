@@ -28,7 +28,7 @@ class Layout extends React.Component{
             <Router>
                 
                 <div style={{height: '15%', width: '100%', backgroundColor: '#018acc'}}>
-                        <img style={{height: '90%', width: '10%', marginTop: '0.5%', marginLeft: '5%', borderRadius: '10px'}} src={Clinica} />
+                        <img className='headr' src={Clinica} />
                 </div>
                 <div style={{height: '5%', width: "100%", backgroundColor: '#07a6f3'}}>
                     <div className="nav">
@@ -53,7 +53,7 @@ class Layout extends React.Component{
                     <Route path='/Contactanos' exact render={(props) => <Contactanos {...props}/>} />
                 </div>
 
-                <div style={{ paddingTop: '1%', color: '#014e73', fontSize: '22px', paddingLeft: '2%', backgroundColor: '#07a6f3', position: "relative", height: '5%', width: '98%', bottom: '0'}}>
+                <div className='footr'>
                     Clinica Humanamente ©
                 </div>
             </Router>
