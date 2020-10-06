@@ -1,6 +1,6 @@
 import React from 'react'
-import Emilio from '../estilo/images/Emilio.JPG'
-import Maria from '../estilo/images/Maria.jpeg'
+import Emilio from '../estilo/images/Emilio1.JPG'
+import Maria from '../estilo/images/Maria1.jpeg'
 import Raul from '../estilo/images/Raul.jpg'
 import Rolando from '../estilo/images/Rolando.jpeg'
 import Vladimir from '../estilo/images/Vladimir.jpeg'
@@ -146,7 +146,7 @@ class Quiensomos extends React.Component{
 
         return(              
         <div>
-            <div style={{ marginTop: '3%', textAlign: "center", fontSize: '33px', color:'#016495'}}>Socios</div>
+            <div className='quient' style={{ marginTop: '3%', textAlign: "center", fontSize: '33px', color:'#016495'}}>Socios</div>
             {contactList}
         </div>
 

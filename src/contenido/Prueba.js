@@ -146,7 +146,7 @@ class Prueba extends React.Component{
 
         return(
             <div className="Gridm">
-                <div style={{width: '95%', marginRight: 'auto', marginLeft: '5%', marginTop: '1%'}}>
+                <div style={{width: '94.5%', marginRight: '0.5%', marginLeft: '5%', marginTop: '1%'}}>
                     <h1 className="titulo"> {this.state.titulo}</h1>
                     <h2 className="tituloc"> Durante las dos últimas semanas, ¿con qué frecuencia
                         ha sentido molestias debido a cualquiera de los

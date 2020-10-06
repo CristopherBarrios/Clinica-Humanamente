@@ -30,17 +30,17 @@ body{
 }
 .tituloc{
 	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-	font-size: 25;
+	font-size: 25px;
 }
 
 .titulo{
 	font-family: Arial, Helvetica, sans-serif;
-	font-size: 40;
+	font-size: 40px;
 	text-align: center;
 }
 .conten{
 	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-	font-size: 20;
+	font-size: 20px;
 }
 .GridCon{
 	width: 80%;
@@ -88,11 +88,13 @@ body{
 	grid-row-gap: 10%;
 }
 .Perfil{
-	height: 100%;
+	height: 360px;
 	width: 60%;
-	margin-top: 0.5%; 
+	margin-top: auto; 
+	margin-bottom: auto;
 	margin-left: 40%;
 	border-radius: 10px;
+	
 }
 .Gridc{
 	width: 80%;
@@ -117,7 +119,7 @@ body{
 	color: #07a6f3;
 	border: none;
 	margin-bottom: 1%;
-	font-size: large;
+	font-size: 18px;
 	transition: .2s;
 }
 .btt.sele{
@@ -175,10 +177,31 @@ body{
 	height: 100%;
 	width: 20%;
 }
+.quient{
+	margin-top: 3%;
+	text-align: center;
+	font-size: 33px;
+	color: #016495;
+}
 /* Responsive */
+@media screen and (max-width: 1200px){
+	.Perfil{
+		width: 85%;
+		margin-left: 15%;
+	}
+	.quienp{
+		font-size: 23px;
+	}
+	.quiend{
+		font-size: 19px!important;
+	}
+	.quient{
+		font-size: 31px!important;
+	}
+}
 @media screen and (max-width: 1190px){
 	.homep p{
-		font-size: 26px;
+		font-size: 25px;
 	}
 	.Gridh{
 		height: 23%;
@@ -214,9 +237,24 @@ body{
 		margin-top: 100%!important;
 	}
 }
+@media screen and (max-width: 1000px){
+	.quienp{
+		font-size: 21px;
+	}
+	.quiend{
+		font-size: 17px!important;
+	}
+	.quient{
+		font-size: 29px!important;
+	}
+	.Perfil{
+		width: 85%;
+		margin-left: 15%;
+	}
+}
 @media screen and (max-width: 945px){
 	.homep p{
-		font-size: 24px;
+		font-size: 23px;
 	}
 	.Gridh{
 		height: 23%;
@@ -228,6 +266,22 @@ body{
 		height: 90%;
 		margin-left: 5%;
 		width: 110%;
+	}
+	.conten{
+		font-size: 18px;
+	}
+	.Gridc{
+		margin-left: 0%;
+		width: 100%;
+	}
+	.titulo{
+		font-size: 35px;
+	}
+	.tituloc{
+		font-size: 22px;
+	}
+	.btt{
+		font-size: 15px;
 	}
 }
 @media screen and (max-width: 847px){
@@ -251,6 +305,20 @@ body{
 	.footr{
 		font-size: 22px;
 		padding-top: 3%;
+	}
+	.quienp{
+		font-size: 19px;
+	}
+	.quiend{
+		font-size: 15px!important;
+	}
+	.quient{
+		font-size: 27px!important;
+	}
+	.Perfil{
+		height: 260px;
+		width: 95%;
+		margin-left: 5%;
 	}
 }
 @media screen and (max-width: 810px){
@@ -287,10 +355,22 @@ body{
 		width: 80%;
 		margin-left: 5%;
 	}
+	.conten{
+		font-size: 16px;
+	}
+	.titulo{
+		font-size: 32px;
+	}
+	.tituloc{
+		font-size: 20px;
+	}
+	.btt{
+		font-size: 15px;
+	}
 }
 @media screen and (max-width: 746px){
 	.homep p{
-		font-size: 22px;
+		font-size: 21px;
 	}
 	.Gridh{
 		height: 22%;
@@ -313,7 +393,7 @@ body{
 		padding-top: 3%;
 	}
 	.footr{
-		font-size: 22px;
+		font-size: 20px;
 		padding-top: 5%;
 	}
 }
@@ -327,10 +407,22 @@ body{
 	.contlo{
 		margin-top: 170%!important;
 	}
+	.conten{
+		font-size: 14px;
+	}
+	.titulo{
+		font-size: 28px;
+	}
+	.tituloc{
+		font-size: 18px;
+	}
+	.btt{
+		font-size: 13px;
+	}
 }
 @media screen and (max-width: 625px){
 	.homep p{
-		font-size: 20px;
+		font-size: 19px;
 	}
 	.Gridh{
 		height: 20%;
@@ -354,7 +446,7 @@ body{
 		padding-top: 3%;
 	}
 	.footr{
-		font-size: 20px;
+		font-size: 18px;
 		padding-top: 3%;
 	}
 	.Gridcont2{
@@ -373,6 +465,20 @@ body{
 	.img2{
 		height: 75%;
 	}
+	.quienp{
+		font-size: 17px;
+	}
+	.quiend{
+		font-size: 13px!important;
+	}
+	.quient{
+		font-size: 25px!important;
+	}
+	.Perfil{
+		height: 200px;
+		width: 115%;
+		margin-left: -15%;
+	}
 }
 @media screen and (max-width: 520px){
 	.contactp p{
@@ -390,7 +496,7 @@ body{
 	.img1{
 		height: 30%;
 		width: 43%;
-		margin-top: 50%;
+		margin-top: 60%;
 	}
 	.img2{
 		height: 70%;
@@ -398,18 +504,32 @@ body{
 	}
 	.contlo{
 		width: 140%!important;
-		height: 23%!important;
+		height: 20%!important;
 		margin-left: 5%!important;
-		margin-top: 250%!important;
+		margin-top: 300%!important;
 	}
 	.Gridcont2{
 		width: 85%;
 		margin-left: 1%;
 	}
+	.conten{
+		font-size: 13px;
+	}
+	.titulo{
+		font-size: 25px;
+	}
+	.tituloc{
+		font-size: 16px;
+	}
+	.btt{
+		font-size: 11px;
+	}
 }
 @media screen and (max-width: 510px){
 	.homep p{
-		font-size: 18px;
+		font-size: 16px;
+		margin-left: 1%;
+		margin-right: 1%;
 	}
 	.Gridh{
 		height: 20%;
@@ -424,8 +544,8 @@ body{
 		padding-top: 35%;
 	}
 	.navb{
-		font-size: 15px;
-		padding-top: 2%;
+		font-size: 16px;
+		padding-top: 1.5%;
 	}
 	.headr{
 		width: 25%;
@@ -433,41 +553,15 @@ body{
 		padding-top: 3%;
 	}
 	.footr{
-		font-size: 18px;
+		font-size: 15px;
 		padding-top: 4%;
+	}
+	.intro{
+		height: 50%;
 	}
 	
 }
-@media screen and (max-width: 435px){
-	.homep p{
-		font-size: 17px;
-	}
-	.Gridh{
-		height: 20%;
-	}
-	.lema{
-		margin-left: 5%;
-	}
-	.logoi{
-		height: 70%;
-		margin-left: -5%;
-		width: 140%;
-		padding-top: 35%;
-	}
-	.navb{
-		font-size: 15px;
-		padding-top: 2%;
-	}
-	.headr{
-		width: 25%;
-		height: 80%;
-		padding-top: 3%;
-	}
-	.footr{
-		font-size: 17px;
-		padding-top: 5%;
-	}
-}
+
 @media screen and (max-width: 1240px){
 	.intro{
 		height: 50%;
@@ -480,16 +574,11 @@ body{
 }
 @media screen and (max-width: 660px){
 	.intro{
-		height: 53%;
+		height: 49.8%;
 	}
 }
 @media screen and (max-width: 510px){
 	.intro{
-		height: 54%;
-	}
-}
-@media screen and (max-width: 430px){
-	.intro{
-		height: 52%;
+		height: 50%;
 	}
 }

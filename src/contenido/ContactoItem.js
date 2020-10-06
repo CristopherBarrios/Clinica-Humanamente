@@ -17,14 +17,14 @@ function ContactoItem(props){
 
                 <div>
                     <div style={{ fontSize: '25px', color:'#016495'}}>
-                        <p>{props.item.nombre}</p></div>
+                        <p className='quienp'>{props.item.nombre}</p></div>
 
-                    <div style={{fontSize: '20px', textAlign: 'justify'}}>
+                    <div className='quiend' style={{fontSize: '20px', textAlign: 'justify'}}>
                         {descrip}
                     </div>
                 </div>
             </div>
-            <div style={{ marginTop: '3%', textAlign: "center", fontSize: '33px', color:'#016495'}}>{divider}</div>
+            <div className='quient' style={{ marginTop: '3%', textAlign: "center", fontSize: '33px', color:'#016495'}}>{divider}</div>
         </div>
     )
 }
