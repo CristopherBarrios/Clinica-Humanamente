@@ -1,5 +1,5 @@
 import React from 'react'
-import Emilio from '../estilo/images/Emilio1.JPG'
+import Emilio from '../estilo/images/Emilio1.jpg'
 import Maria from '../estilo/images/Maria1.jpeg'
 import Raul from '../estilo/images/Raul.jpg'
 import Rolando from '../estilo/images/Rolando.jpeg'
