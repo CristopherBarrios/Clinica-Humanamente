@@ -1,4 +1,4 @@
-
+#Aplicacion Clinica Humanamente
 import kivy
 from kivy.app import App
 from kivy.core.window import Window
@@ -18,7 +18,8 @@ con = psycopg2.connect(
     host = "localhost",
     database = "Humanamente",
     user = "postgres",
-    password = "Diego199")
+    #cambiar password
+    password = "contrasena")
 
 #create a cursor
 cur = con.cursor()
