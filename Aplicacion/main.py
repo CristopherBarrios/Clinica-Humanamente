@@ -6,6 +6,8 @@ from kivy.lang import Builder
 from kivy.clock import Clock
 from kivy.properties import ObjectProperty
 from kivy.uix.screenmanager import ScreenManager, Screen
+from kivy.uix.label import Label
+from kivy.uix.gridlayout import GridLayout
 import datetime
 import psycopg2
 import csv
@@ -19,7 +21,7 @@ con = psycopg2.connect(
     database = "Humanamente",
     user = "postgres",
     #cambiar password
-    password = "contrasena")
+    password = "Diego199")
 
 #create a cursor
 cur = con.cursor()
@@ -34,19 +36,16 @@ class MainWindow(Screen):
         #EleventhWindow.userActual = usern
         #TwelveWindow.userActual = usern
 
-        self.manager.current = 'inventario'
-
-        '''if usern != '':
+        if usern != '':
             cur.execute("SELECT COUNT(*) FROM secretarias WHERE username = %s AND password = %s", (str(usern), str(passw)))
             opcion1 = cur.fetchall()
             s = str(opcion1)
-            print(s)
             if s != '[(0,)]':
                 self.errM.text = ''
                 self.manager.transition.direction = "left"
-                self.manager.current = 'home'
+                self.manager.current = 'inventario'
             else:
-                self.errM.text = 'Usuario o contrasena incorrecta'''
+                self.errM.text = 'Usuario o contrasena incorrecta'
 
 
 class SecondWindow(Screen):
@@ -60,30 +59,43 @@ class SecondWindow(Screen):
         confp = self.ids.confirmp_field.text
         nombres = str(nombr + ' '+ apell)
         
-        if usern != '':
-            cur.execute(
-                "SELECT MAX(id) + 1 FROM secretarias")
-            opcion3 = cur.fetchall()
-            r = str(opcion3)
-            r = r.replace('[', "")
-            r = r.replace(']', "")
-            r = r.replace('(', "")
-            r = r.replace(')', "")
-            r = r.replace("'", "")
-            r = r.replace('"', "")
-            r = r.replace(",", '')
-            secreid = int(r)
+        if usern != '' and passw != '':
+            if passw != confp:
+                self.errM.text = 'Error al confirmar contrasena'
+            else:
+                cur.execute(
+                    "SELECT MAX(id) + 1 FROM secretarias")
+                opcion3 = cur.fetchall()
+                r = str(opcion3)
+                r = r.replace('[', "")
+                r = r.replace(']', "")
+                r = r.replace('(', "")
+                r = r.replace(')', "")
+                r = r.replace("'", "")
+                r = r.replace('"', "")
+                r = r.replace(",", '')
+                secreid = int(r)
 
-            cur.execute("INSERT INTO secretarias VALUES(%s, %s, %s, %s)",
-                        (secreid, str(nombres), str(usern), str(passw)))
-            con.commit()
+                cur.execute("INSERT INTO secretarias VALUES(%s, %s, %s, %s)",
+                            (secreid, str(nombres), str(usern), str(passw)))
+                con.commit()
 
-            self.manager.transition.direction = "right"
-            self.manager.current = 'log'
+                self.manager.transition.direction = "right"
+                self.manager.current = 'log'
 
 
 class ThirdWindow(Screen):
-    pass
+    def on_pre_enter(self, *args):
+        meds = []
+        cur.execute("SELECT * FROM medicamentos")
+        self.opcion1 = cur.fetchall()
+
+        print(self.opcion1[0][1])
+        if len(self.opcion1) == 0:
+            print('lol')
+        medis = self.ids.medis
+        medis.add_widget(Label(text = 'hola'))
+
 
 
 class WindowManager(ScreenManager):

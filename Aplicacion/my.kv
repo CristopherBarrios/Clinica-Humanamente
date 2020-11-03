@@ -117,7 +117,7 @@ WindowManager:
             Button:
                 background_color: 0, 0, 0, 0
                 color: 0.04, 0.392, 0.584, 1
-                text: "Olvido su contrasena?"
+                text: "No esta registrado? Crea un nuevo usuario"
                 size_hint_x: None
                 width: 170
                 on_release:
@@ -136,14 +136,14 @@ WindowManager:
 
         Label:
             size_hint_y: None
-            height: 40
+            height: 10
 
         GridLayout:
             cols: 2
             size_hint_x: None
             width: 670
             size_hint_y: None
-            height: 275
+            height: 200
 
             Label:
                 size_hint_x: None
@@ -177,11 +177,22 @@ WindowManager:
                 text: "NOMBRE"
 
             TextInput:
-                id: user_field
+                id: nombre_field
                 background_color: 0,6, 0.6, 0.6, 1
                 multiline: False
                 focus: True
-                text: "Diego"
+                text: ""
+
+            Label:
+                size_hint_x: None
+                width: 10
+            Label:
+                size_hint_x: None
+                width: 10
+            Label:
+                size_hint_x: None
+                width: 10
+
 
             Label:
                 size_hint_x: None
@@ -192,13 +203,23 @@ WindowManager:
                 text: "APELLIDO"
 
             TextInput:
-                id: user_field
+                id: apellido_field
                 background_color: 0,6, 0.6, 0.6, 1
                 multiline: False
                 focus: True
-                text: "Diego"
+                text: ""
 
             
+            Label:
+                size_hint_x: None
+                width: 10
+            Label:
+                size_hint_x: None
+                width: 10
+            Label:
+                size_hint_x: None
+                width: 10
+
             Label:
                 size_hint_x: None
                 width: 10
@@ -212,7 +233,17 @@ WindowManager:
                 background_color: 0,6, 0.6, 0.6, 1
                 multiline: False
                 focus: True
-                text: "Diego"
+                text: ""
+
+            Label:
+                size_hint_x: None
+                width: 10
+            Label:
+                size_hint_x: None
+                width: 10
+            Label:
+                size_hint_x: None
+                width: 10
 
             Label:
                 size_hint_x: None
@@ -226,7 +257,17 @@ WindowManager:
                 id: pass_field
                 background_color: 0,6, 0.6, 0.6, 1
                 multiline: False
-                text: "123"
+                text: ""
+
+            Label:
+                size_hint_x: None
+                width: 10
+            Label:
+                size_hint_x: None
+                width: 10
+            Label:
+                size_hint_x: None
+                width: 10
 
             Label:
                 size_hint_x: None
@@ -237,12 +278,21 @@ WindowManager:
                 text: "CONFIRMAR CONTRASENA"
 
             TextInput:
-                id: user_field
+                id: confirmp_field
                 background_color: 0,6, 0.6, 0.6, 1
                 multiline: False
                 focus: True
-                text: "Diego"
+                text: ""
 
+            Label:
+                size_hint_x: None
+                width: 10
+            Label:
+                size_hint_x: None
+                width: 10
+            Label:
+                size_hint_x: None
+                width: 10
 
             Label:
                 size_hint_y: None
@@ -285,6 +335,8 @@ WindowManager:
 
 <ThirdWindow>
     name: "inventario"
+    med1: med1
+    medis: medis
 
 
     GridLayout:
@@ -320,23 +372,135 @@ WindowManager:
                 size_hint_x: None
                 width: 500
                 color: 0.04, 0.306, 0.451, 1
-                font_size: 25
+                font_size: 30
                 text: 'Inventario de Farmacia'
 
         Label:
             size_hint_y: None
             height: 15
 
-        ScrollView:
-            background_color: 0.8, 0.8, 0.8, 1
+        GridLayout:
+            cols: 3
             size_hint_y: None
-            height: 450
-            size_hint_x: None
-            width: 900
-            bar_width: 30
-            bar_color: 5, 10, 15, .8
-            bar_inactive_color: 5, 20, 10, .5
-            scroll_type: ['bars']
+            height: 500
+
+            Label:
+                size_hint_x: None
+                width: 50
+
+            GridLayout:
+                cols: 1
+                size_hint_y: None
+                height: 500
+
+                Label:
+                    size_hint_y: None
+                    height: 40
+                    color: 0.15, 0.68, 0.93, 1
+                    canvas.before:
+                        Color:
+                            rgba: 0.04, 0.306, 0.451, 1
+                        Rectangle:
+                            pos: self.pos
+                            size: self.size
+                    font_size: 25
+                    text: 'Inventario'
+
+                GridLayout:
+                    cols: 4
+                    size_hint_y: None
+                    height: 40
+                    canvas.before:
+                        Color:
+                            rgba: 0.04, 0.392, 0.584, 1
+                        Rectangle:
+                            pos: self.pos
+                            size: self.size
+
+                    Label:
+                        text: 'Medicamento'
+                        color: 0.15, 0.68, 0.93, 1
+                        font_size: 22
+                    Label:
+                        text: 'Vencimiento'
+                        color: 0.15, 0.68, 0.93, 1
+                        font_size: 22
+                    Label:
+                        text: 'Unidades'
+                        color: 0.15, 0.68, 0.93, 1
+                        font_size: 22
+                    Label:
+                        text: 'Precio'
+                        color: 0.15, 0.68, 0.93, 1
+                        font_size: 22
+
+                ScrollView:
+                    background_color: 0.8, 0.8, 0.8, 1
+                    size_hint_y: None
+                    height: 350
+                    bar_width: 30
+                    bar_color: 5, 10, 15, .8
+                    bar_inactive_color: 5, 20, 10, .5
+                    scroll_type: ['bars']
+                    canvas.before:
+                        Color:
+                            rgba: 0.8, 0.8, 0.8, 1
+                        Rectangle:
+                            pos: self.pos
+                            size: self.size
+
+                    GridLayout:
+                        id: medis
+                        cols: 1
+                        size_hint_y: None
+                        height: 300
+
+                        GridLayout:
+                            id: med1
+                            cols: 4
+                            size_hint_y: None
+                            height: 40
+                            canvas.before:
+                                Color:
+                                    rgba: 0.9, 0.9, 0.9, 0.8
+                                Rectangle:
+                                    pos: self.pos
+                                    size: self.size
+                            
+                            Label:
+
+                                color: 0, 0, 0, 1
+                                font_size: 22
+                                text: 'Inventario'
+                            Label:
+                                color: 0, 0, 0, 1
+                                font_size: 22
+                                text: 'Inventario'
+                            Label:
+                                color: 0, 0, 0, 1
+                                font_size: 22
+                                text: 'Inventario'
+                            Label:
+                                color: 0, 0, 0, 1
+                                font_size: 22
+                                text: 'Inventario'
+                        
+                        Label:
+                            size_hint_y: None
+                            height: 40
+                            color: 0, 0, 0, 1
+                            canvas.before:
+                                Color:
+                                    rgba: 0.85, 0.85, 0.85, 1
+                                Rectangle:
+                                    pos: self.pos
+                                    size: self.size
+                            font_size: 25
+                            text: 'Inventario'
+
+            Label:
+                size_hint_x: None
+                width: 50
 
         GridLayout:
             cols: 6
@@ -350,7 +514,7 @@ WindowManager:
             Button:
                 background_color: 1, 1, 1, 0.3
                 color: 0, 0, 0, 1
-                font_size: 22
+                font_size: 20
                 size_hint_x: None
                 width: 200
                 text: 'Agregar'
@@ -362,7 +526,7 @@ WindowManager:
             Button:
                 background_color: 1, 1, 1, 0.3
                 color: 0, 0, 0, 1
-                font_size: 22
+                font_size: 20
                 size_hint_x: None
                 width: 200
                 text: 'Editar'
@@ -374,7 +538,7 @@ WindowManager:
             Button:
                 background_color: 1, 1, 1, 0.3
                 color: 0, 0, 0, 1
-                font_size: 22
+                font_size: 20
                 size_hint_x: None
                 width: 200
                 text: 'Eliminar'
