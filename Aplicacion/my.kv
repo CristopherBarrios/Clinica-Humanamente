@@ -1,0 +1,386 @@
+WindowManager:
+    MainWindow:
+    SecondWindow:
+    ThirdWindow:
+
+<MainWindow>:
+    name: "log"
+    errM: errM
+
+    GridLayout:
+        cols: 1
+
+        Label:
+            size_hint_y: None
+            height: 40
+
+        GridLayout:
+            cols: 2
+            size_hint_x: None
+            width: 670
+            size_hint_y: None
+            height: 275
+
+            Label:
+                size_hint_x: None
+                width: 370
+
+            Image:
+                size_hint_y: None
+                height: 190
+                size_hint_x: None
+                width: 380
+                source: "Images/clinica.jpg"
+
+            Label:
+                size_hint_y: None
+                height: 20
+
+        GridLayout:
+            cols: 3
+            size_hint_x: None
+            width: 670
+            size_hint_y: None
+            height: 115
+
+
+            Label:
+                size_hint_x: None
+                width: 10
+
+            Label:
+                color: 0.04, 0.306, 0.451, 1
+                text: "USUARIO"
+
+            TextInput:
+                id: user_field
+                background_color: 0,6, 0.6, 0.6, 1
+                multiline: False
+                focus: True
+                text: "Diego"
+
+            Label:
+                size_hint_x: None
+                width: 10
+
+            Label:
+                color: 0.04, 0.392, 0.584, 1
+                text: "CONTRASENA"
+
+            TextInput:
+                id: pass_field
+                background_color: 0,6, 0.6, 0.6, 1
+                multiline: False
+                text: "123"
+
+            Label:
+                size_hint_y: None
+                height: 5
+            Label:
+                text: ""
+
+            Label:
+                color: 0.04, 0.392, 0.584, 1
+                id: errM
+                text: ""
+
+            Label:
+                size_hint_y: None
+                height: 5
+
+
+        GridLayout:
+            cols:2
+            size_hint_x: None
+            width: 660
+            size_hint_y: None
+            height: 60
+
+            Label:
+
+                text: ""
+            Button:
+                background_color: 0.153, 0.675, 0.929, 1
+                size_hint_x: None
+                width: 200
+                text: "Log In"
+                on_release:
+                    root.userVer()
+
+
+        GridLayout:
+            cols: 2
+
+            Label:
+                size_hint_x: None
+                width: 470
+            Button:
+                background_color: 0, 0, 0, 0
+                color: 0.04, 0.392, 0.584, 1
+                text: "Olvido su contrasena?"
+                size_hint_x: None
+                width: 170
+                on_release:
+                    app.root.current = 'create'
+                    root.manager.transition.direction = "left"
+        Label:
+            size_hint_y: None
+            height: 20
+
+<SecondWindow>:
+    name: "create"
+    errM: errM
+
+    GridLayout:
+        cols: 1
+
+        Label:
+            size_hint_y: None
+            height: 40
+
+        GridLayout:
+            cols: 2
+            size_hint_x: None
+            width: 670
+            size_hint_y: None
+            height: 275
+
+            Label:
+                size_hint_x: None
+                width: 370
+
+            Image:
+                size_hint_y: None
+                height: 190
+                size_hint_x: None
+                width: 380
+                source: "Images/clinica.jpg"
+
+            Label:
+                size_hint_y: None
+                height: 20
+
+        GridLayout:
+            cols: 3
+            size_hint_x: None
+            width: 670
+            size_hint_y: None
+            height: 350
+
+
+            Label:
+                size_hint_x: None
+                width: 10
+
+            Label:
+                color: 0.04, 0.306, 0.451, 1
+                text: "NOMBRE"
+
+            TextInput:
+                id: user_field
+                background_color: 0,6, 0.6, 0.6, 1
+                multiline: False
+                focus: True
+                text: "Diego"
+
+            Label:
+                size_hint_x: None
+                width: 10
+
+            Label:
+                color: 0.04, 0.306, 0.451, 1
+                text: "APELLIDO"
+
+            TextInput:
+                id: user_field
+                background_color: 0,6, 0.6, 0.6, 1
+                multiline: False
+                focus: True
+                text: "Diego"
+
+            
+            Label:
+                size_hint_x: None
+                width: 10
+
+            Label:
+                color: 0.04, 0.306, 0.451, 1
+                text: "USUARIO"
+
+            TextInput:
+                id: user_field
+                background_color: 0,6, 0.6, 0.6, 1
+                multiline: False
+                focus: True
+                text: "Diego"
+
+            Label:
+                size_hint_x: None
+                width: 10
+
+            Label:
+                color: 0.04, 0.392, 0.584, 1
+                text: "CONTRASENA"
+
+            TextInput:
+                id: pass_field
+                background_color: 0,6, 0.6, 0.6, 1
+                multiline: False
+                text: "123"
+
+            Label:
+                size_hint_x: None
+                width: 10
+
+            Label:
+                color: 0.04, 0.306, 0.451, 1
+                text: "CONFIRMAR CONTRASENA"
+
+            TextInput:
+                id: user_field
+                background_color: 0,6, 0.6, 0.6, 1
+                multiline: False
+                focus: True
+                text: "Diego"
+
+
+            Label:
+                size_hint_y: None
+                height: 5
+            Label:
+                text: ""
+
+            Label:
+                color: 0.04, 0.392, 0.584, 1
+                id: errM
+                text: ""
+
+            Label:
+                size_hint_y: None
+                height: 5
+
+
+        GridLayout:
+            cols:2
+            size_hint_x: None
+            width: 660
+            size_hint_y: None
+            height: 60
+
+            Label:
+
+                text: ""
+            Button:
+                background_color: 0.153, 0.675, 0.929, 1
+                size_hint_x: None
+                width: 200
+                text: "Crear Usuario"
+                on_release:
+                    root.userVer()
+
+        Label:
+            size_hint_y: None
+            height: 20
+
+
+<ThirdWindow>
+    name: "inventario"
+
+
+    GridLayout:
+        cols:1
+        size: root.width, root.height
+        row_default_height: 10
+
+        Label:
+            size_hint_y: None
+            height: 15
+
+        GridLayout:
+            cols: 4
+            size_hint_y: None
+            height: 100
+
+            Label:
+                size_hint_x: None
+                width: 50
+
+            Image:
+                size_hint_y: None
+                height: 100
+                size_hint_x: None
+                width: 170
+                source: "Images/clinica.jpg"
+
+            Label:
+                size_hint_x: None
+                width: 90
+
+            Label:
+                size_hint_x: None
+                width: 500
+                color: 0.04, 0.306, 0.451, 1
+                font_size: 25
+                text: 'Inventario de Farmacia'
+
+        Label:
+            size_hint_y: None
+            height: 15
+
+        ScrollView:
+            background_color: 0.8, 0.8, 0.8, 1
+            size_hint_y: None
+            height: 450
+            size_hint_x: None
+            width: 900
+            bar_width: 30
+            bar_color: 5, 10, 15, .8
+            bar_inactive_color: 5, 20, 10, .5
+            scroll_type: ['bars']
+
+        GridLayout:
+            cols: 6
+            size_hint_y: None
+            height: 50
+
+            Label:
+                size_hint_x: None
+                width: 50
+
+            Button:
+                background_color: 1, 1, 1, 0.3
+                color: 0, 0, 0, 1
+                font_size: 22
+                size_hint_x: None
+                width: 200
+                text: 'Agregar'
+
+            Label:
+                size_hint_x: None
+                width: 200
+
+            Button:
+                background_color: 1, 1, 1, 0.3
+                color: 0, 0, 0, 1
+                font_size: 22
+                size_hint_x: None
+                width: 200
+                text: 'Editar'
+
+            Label:
+                size_hint_x: None
+                width: 200
+
+            Button:
+                background_color: 1, 1, 1, 0.3
+                color: 0, 0, 0, 1
+                font_size: 22
+                size_hint_x: None
+                width: 200
+                text: 'Eliminar'
+
+
+        
+
+
+            
