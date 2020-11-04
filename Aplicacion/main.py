@@ -8,6 +8,7 @@ from kivy.properties import ObjectProperty
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.uix.label import Label
 from kivy.uix.gridlayout import GridLayout
+from kivy.graphics import Color, Rectangle
 import datetime
 import psycopg2
 import csv
@@ -85,17 +86,98 @@ class SecondWindow(Screen):
 
 
 class ThirdWindow(Screen):
-    def on_pre_enter(self, *args):
+    def on_enter(self, *args):
+        medis = self.ids.medis
+        medis.clear_widgets()
         meds = []
         cur.execute("SELECT * FROM medicamentos")
-        self.opcion1 = cur.fetchall()
+        opcion1 = cur.fetchall()
+        for i in opcion1:
+            layout = GridLayout(cols=4, size_hint_y=None, height=40)
+            layout.add_widget(Label(text=str(i[1]), font_size=22, color=[0,0,0,1]))
+            if i[4] == None:
+                venci = 'N/A'
+            else:
+                venci = i[4]
+            layout.add_widget(Label(text=str(venci), font_size=22, color=[0,0,0,1]))
+            layout.add_widget(Label(text=str(i[2]), font_size=22, color=[0,0,0,1]))
+            layout.add_widget(Label(text=str('Q: ' + str(i[3])), font_size=22, color=[0,0,0,1]))
 
-        print(self.opcion1[0][1])
-        if len(self.opcion1) == 0:
+            meds.append(layout)
+        if len(opcion1) == 0:
             print('lol')
-        medis = self.ids.medis
-        medis.add_widget(Label(text = 'hola'))
+        
+        for i in meds:
+            medis.add_widget(i)
 
+class FourthWindow(Screen):
+    errM = ObjectProperty(None)
+
+    def addMed(self):
+        nombr = self.ids.name_field.text
+        date = self.ids.date_field.text
+        price = self.ids.price_field.text
+        unidades = self.ids.unidades_field.text
+        if nombr != '':
+            cur.execute(
+                "SELECT MAX(id) + 1 FROM medicamentos")
+            opcion3 = cur.fetchall()
+            r = str(opcion3)
+            r = r.replace('[', "")
+            r = r.replace(']', "")
+            r = r.replace('(', "")
+            r = r.replace(')', "")
+            r = r.replace("'", "")
+            r = r.replace('"', "")
+            r = r.replace(",", '')
+            medid = int(r)
+
+            cur.execute("INSERT INTO medicamentos VALUES(%s, %s, %s, %s, %s)",
+                        (medid, str(nombr), int(unidades), float(price), str(date)))
+            con.commit()
+
+            self.manager.transition.direction = "right"
+            self.manager.current = 'inventario'
+
+class FifthWindow(Screen):
+    errM = ObjectProperty(None)
+
+    def editMed(self):
+        nombr = self.ids.name_field.text
+        date = self.ids.date_field.text
+        price = self.ids.price_field.text
+        unidades = self.ids.unidades_field.text
+        if nombr != '':
+            cur.execute("SELECT * FROM medicamentos WHERE nombre = '" + str(nombr) + "'")
+            opcion1 = cur.fetchall()
+            if len(opcion1) == 0:
+                self.errM.text = 'No se encontro el medicamento'
+            else:
+                cur.execute("UPDATE medicamentos SET disponible = %s , precio = %s, vencimiento = %s WHERE nombre = %s",
+                        (int(unidades), float(price),  str(date), str(nombr)))
+                con.commit()
+
+                self.errM.text = ''
+                self.manager.transition.direction = "right"
+                self.manager.current = 'inventario'
+
+class SixthWindow(Screen):
+    errM = ObjectProperty(None)
+
+    def deleteMed(self):
+        nombr = self.ids.name_field.text
+        if nombr != '':
+            cur.execute("SELECT * FROM medicamentos WHERE nombre = '" + str(nombr) + "'")
+            opcion1 = cur.fetchall()
+            if len(opcion1) == 0:
+                self.errM.text = 'No se encontro el medicamento'
+            else:
+                cur.execute("DELETE FROM medicamentos WHERE nombre= %s", (nombr,))
+                con.commit()
+
+                self.errM.text = ''
+                self.manager.transition.direction = "right"
+                self.manager.current = 'inventario'
 
 
 class WindowManager(ScreenManager):
