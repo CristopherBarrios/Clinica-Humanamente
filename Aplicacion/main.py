@@ -22,7 +22,7 @@ con = psycopg2.connect(
     database = "Humanamente",
     user = "postgres",
     #cambiar password
-    password = "Diego199")
+    password = "contrasena")
 
 #create a cursor
 cur = con.cursor()
