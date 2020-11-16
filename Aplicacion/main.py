@@ -22,20 +22,18 @@ con = psycopg2.connect(
     database = "Humanamente",
     user = "postgres",
     #cambiar password
-    password = "contrasena")
+    password = "Diego199")
 
 #create a cursor
 cur = con.cursor()
 
 class MainWindow(Screen):
+    #Log in
     errM = ObjectProperty(None)
-
 
     def userVer(self):
         usern = self.ids.user_field.text
         passw = self.ids.pass_field.text
-        #EleventhWindow.userActual = usern
-        #TwelveWindow.userActual = usern
 
         if usern != '':
             cur.execute("SELECT COUNT(*) FROM secretarias WHERE username = %s AND password = %s", (str(usern), str(passw)))
@@ -50,6 +48,7 @@ class MainWindow(Screen):
 
 
 class SecondWindow(Screen):
+    #Crear usuario
     errM = ObjectProperty(None)
 
     def userVer(self):
@@ -86,6 +85,7 @@ class SecondWindow(Screen):
 
 
 class ThirdWindow(Screen):
+    #Inventario
     def on_enter(self, *args):
         medis = self.ids.medis
         medis.clear_widgets()
@@ -104,13 +104,12 @@ class ThirdWindow(Screen):
             layout.add_widget(Label(text=str('Q: ' + str(i[3])), font_size=22, color=[0,0,0,1]))
 
             meds.append(layout)
-        if len(opcion1) == 0:
-            print('lol')
         
         for i in meds:
             medis.add_widget(i)
 
 class FourthWindow(Screen):
+    #Agregar usuario
     errM = ObjectProperty(None)
 
     def addMed(self):
@@ -140,6 +139,7 @@ class FourthWindow(Screen):
             self.manager.current = 'inventario'
 
 class FifthWindow(Screen):
+    #Editar medicamento
     errM = ObjectProperty(None)
 
     def editMed(self):
@@ -162,6 +162,7 @@ class FifthWindow(Screen):
                 self.manager.current = 'inventario'
 
 class SixthWindow(Screen):
+    #Eliminat medicamento
     errM = ObjectProperty(None)
 
     def deleteMed(self):
