@@ -104,6 +104,7 @@ WindowManager:
                 text: ""
             Button:
                 background_color: 0.153, 0.675, 0.929, 1
+                font_size: 18
                 size_hint_x: None
                 width: 200
                 text: "Log In"
@@ -146,7 +147,7 @@ WindowManager:
             size_hint_x: None
             width: 670
             size_hint_y: None
-            height: 200
+            height: 210
 
             Label:
                 size_hint_x: None
@@ -314,9 +315,9 @@ WindowManager:
 
 
         GridLayout:
-            cols:2
+            cols:3
             size_hint_x: None
-            width: 660
+            width: 760
             size_hint_y: None
             height: 60
 
@@ -325,6 +326,17 @@ WindowManager:
                 text: ""
             Button:
                 background_color: 0.153, 0.675, 0.929, 1
+                font_size: 18
+                size_hint_x: None
+                width: 200
+                text: "Regresar"
+                on_release:
+                    root.manager.transition.direction = "right"
+                    app.root.current = 'log'
+                    
+            Button:
+                background_color: 0.153, 0.675, 0.929, 1
+                font_size: 18
                 size_hint_x: None
                 width: 200
                 text: "Crear Usuario"
@@ -677,9 +689,9 @@ WindowManager:
 
 
         GridLayout:
-            cols:2
+            cols:3
             size_hint_x: None
-            width: 660
+            width: 760
             size_hint_y: None
             height: 60
 
@@ -688,6 +700,16 @@ WindowManager:
                 text: ""
             Button:
                 background_color: 0.153, 0.675, 0.929, 1
+                font_size: 18
+                size_hint_x: None
+                width: 200
+                text: "Regresar"
+                on_release:
+                    root.manager.transition.direction = "right"
+                    app.root.current = 'inventario'
+            Button:
+                background_color: 0.153, 0.675, 0.929, 1
+                font_size: 18
                 size_hint_x: None
                 width: 200
                 text: "Agregar"
@@ -863,9 +885,9 @@ WindowManager:
 
 
         GridLayout:
-            cols:2
+            cols: 3
             size_hint_x: None
-            width: 660
+            width: 760
             size_hint_y: None
             height: 60
 
@@ -874,6 +896,16 @@ WindowManager:
                 text: ""
             Button:
                 background_color: 0.153, 0.675, 0.929, 1
+                font_size: 18
+                size_hint_x: None
+                width: 200
+                text: "Regresar"
+                on_release:
+                    root.manager.transition.direction = "right"
+                    app.root.current = 'inventario'
+            Button:
+                background_color: 0.153, 0.675, 0.929, 1
+                font_size: 18
                 size_hint_x: None
                 width: 200
                 text: "Confirmar"
@@ -972,9 +1004,9 @@ WindowManager:
 
 
         GridLayout:
-            cols:2
+            cols: 3
             size_hint_x: None
-            width: 660
+            width: 760
             size_hint_y: None
             height: 60
 
@@ -983,6 +1015,16 @@ WindowManager:
                 text: ""
             Button:
                 background_color: 0.153, 0.675, 0.929, 1
+                font_size: 18
+                size_hint_x: None
+                width: 200
+                text: "Regresar"
+                on_release:
+                    root.manager.transition.direction = "right"
+                    app.root.current = 'inventario'
+            Button:
+                background_color: 0.153, 0.675, 0.929, 1
+                font_size: 18
                 size_hint_x: None
                 width: 200
                 text: "Confirmar"

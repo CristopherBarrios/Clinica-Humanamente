@@ -92,7 +92,6 @@ class ThirdWindow(Screen):
         meds = []
         cur.execute("SELECT * FROM medicamentos")
         opcion1 = cur.fetchall()
-        print(opcion1)
         for i in opcion1:
             layout = GridLayout(cols=5, size_hint_y=None, height=40)
             layout.add_widget(Label(text=str(i[1]), font_size=22, color=[0,0,0,1]))
