@@ -527,6 +527,7 @@ WindowManager:
 
 <FourthWindow>
     name: "add"
+    errM: errM
 
     GridLayout:
         cols: 1
@@ -580,6 +581,31 @@ WindowManager:
 
             TextInput:
                 id: name_field
+                background_color: 0,6, 0.6, 0.6, 1
+                multiline: False
+                focus: True
+                text: ""
+
+            Label:
+                size_hint_x: None
+                width: 10
+            Label:
+                size_hint_x: None
+                width: 10
+            Label:
+                size_hint_x: None
+                width: 10
+
+            Label:
+                size_hint_x: None
+                width: 10
+
+            Label:
+                color: 0.04, 0.306, 0.451, 1
+                text: "CODIGO ATC"
+
+            TextInput:
+                id: code_field
                 background_color: 0,6, 0.6, 0.6, 1
                 multiline: False
                 focus: True
