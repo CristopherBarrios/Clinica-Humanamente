@@ -97,7 +97,7 @@ WindowManager:
             size_hint_x: None
             width: 660
             size_hint_y: None
-            height: 60
+            height: 50
 
             Label:
 
@@ -319,7 +319,7 @@ WindowManager:
             size_hint_x: None
             width: 760
             size_hint_y: None
-            height: 60
+            height: 50
 
             Label:
 
@@ -389,12 +389,12 @@ WindowManager:
 
         Label:
             size_hint_y: None
-            height: 15
+            height: 20
 
         GridLayout:
             cols: 3
             size_hint_y: None
-            height: 500
+            height: 400
 
             Label:
                 size_hint_x: None
@@ -403,7 +403,7 @@ WindowManager:
             GridLayout:
                 cols: 1
                 size_hint_y: None
-                height: 500
+                height: 420
 
                 Label:
                     size_hint_y: None
@@ -524,6 +524,30 @@ WindowManager:
                 on_release:
                     app.root.current = 'delete'
                     root.manager.transition.direction = "left"
+
+        Label:
+            size_hint_y: None
+            height: 20
+
+        GridLayout:
+            cols:2
+            size_hint_x: None
+            width: 650
+            size_hint_y: None
+            height: 50
+
+            Label:
+
+                text: ""
+            Button:
+                background_color: 0.153, 0.675, 0.929, 1
+                font_size: 18
+                size_hint_x: None
+                width: 200
+                text: "Regresar"
+                on_release:
+                    app.root.current = 'log'
+                    root.manager.transition.direction = "right"
 
 <FourthWindow>
     name: "add"
@@ -719,7 +743,7 @@ WindowManager:
             size_hint_x: None
             width: 760
             size_hint_y: None
-            height: 60
+            height: 50
 
             Label:
 
@@ -817,6 +841,30 @@ WindowManager:
                 size_hint_x: None
                 width: 10
 
+            Label:
+                size_hint_x: None
+                width: 10
+
+            Label:
+                color: 0.04, 0.306, 0.451, 1
+                text: "CODIGO ATC"
+
+            TextInput:
+                id: code_field
+                background_color: 0,6, 0.6, 0.6, 1
+                multiline: False
+                focus: True
+                text: ""
+
+            Label:
+                size_hint_x: None
+                width: 10
+            Label:
+                size_hint_x: None
+                width: 10
+            Label:
+                size_hint_x: None
+                width: 10
 
             Label:
                 size_hint_x: None
@@ -915,7 +963,7 @@ WindowManager:
             size_hint_x: None
             width: 760
             size_hint_y: None
-            height: 60
+            height: 50
 
             Label:
 
@@ -1034,7 +1082,7 @@ WindowManager:
             size_hint_x: None
             width: 760
             size_hint_y: None
-            height: 60
+            height: 50
 
             Label:
 

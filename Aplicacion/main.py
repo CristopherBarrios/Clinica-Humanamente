@@ -52,6 +52,7 @@ class SecondWindow(Screen):
     errM = ObjectProperty(None)
 
     def userVer(self):
+        self.errM.text = ''
         nombr = self.ids.nombre_field.text
         apell = self.ids.apellido_field.text
         usern = self.ids.user_field.text
@@ -60,29 +61,30 @@ class SecondWindow(Screen):
         nombres = str(nombr + ' '+ apell)
         
         if usern != '' and passw != '':
-            if passw != confp:
-                self.errM.text = 'Error al confirmar contrasena'
+            #Verificar que no exista usuario
+            cur.execute("SELECT COUNT(*) FROM secretarias WHERE username = '" + usern + "'")
+            opcion1 = cur.fetchall()
+            s = str(opcion1)
+            if s != '[(1,)]':
+
+                if passw != confp:
+                    self.errM.text = 'Error al confirmar contrasena'
+                else:
+                    cur.execute(
+                        "SELECT MAX(id) + 1 FROM secretarias")
+                    opcion3 = cur.fetchall()
+                    secreid = int(opcion3[0][0])
+
+                    cur.execute("INSERT INTO secretarias VALUES(%s, %s, %s, %s)",
+                                (secreid, str(nombres), str(usern), str(passw)))
+                    con.commit()
+
+                    self.manager.transition.direction = "right"
+                    self.manager.current = 'log'
             else:
-                cur.execute(
-                    "SELECT MAX(id) + 1 FROM secretarias")
-                opcion3 = cur.fetchall()
-                r = str(opcion3)
-                r = r.replace('[', "")
-                r = r.replace(']', "")
-                r = r.replace('(', "")
-                r = r.replace(')', "")
-                r = r.replace("'", "")
-                r = r.replace('"', "")
-                r = r.replace(",", '')
-                secreid = int(r)
-
-                cur.execute("INSERT INTO secretarias VALUES(%s, %s, %s, %s)",
-                            (secreid, str(nombres), str(usern), str(passw)))
-                con.commit()
-
-                self.manager.transition.direction = "right"
-                self.manager.current = 'log'
-
+                self.errM.text = 'Usuario ya existe'
+        else:
+            self.errM.text = 'Por favor llene todos los campos requeridos'
 
 class ThirdWindow(Screen):
     #Inventario
@@ -90,7 +92,7 @@ class ThirdWindow(Screen):
         medis = self.ids.medis
         medis.clear_widgets()
         meds = []
-        cur.execute("SELECT * FROM medicamentos")
+        cur.execute("SELECT * FROM medicamentos ORDER BY nombre ASC")
         opcion1 = cur.fetchall()
         for i in opcion1:
             layout = GridLayout(cols=5, size_hint_y=None, height=40)
@@ -142,28 +144,55 @@ class FourthWindow(Screen):
             inp += 1
         if unidades == '':
             unidades = 0
-        elif int(unidades) < 0:
+
+        esint = True
+        try:
+            int(unidades)
+        except ValueError:
+            esint = False
             self.errM.text = 'Cantidad de unidades invalida'
             inp += 1
+        
+        if (esint):
+            if int(unidades) < 0:
+                self.errM.text = 'Cantidad de unidades invalida'
+                inp += 1
         if price == '':
             inp += 1
-        elif float(price) < 0:
+        
+        esint2 = True
+        try:
+            float(price)
+        except ValueError:
+            esint2 = False
             self.errM.text = 'Precio invalido'
             inp += 1
+
+        if (esint2):
+            if float(price) < 0:
+                self.errM.text = 'Precio invalido'
+                inp += 1
         if date == '':
             inp += 1
         else:
-            day,month,year = date.split('/')
-
-            isValidDate = True
-            try :
-                datetime.datetime(int(year),int(month),int(day))
-            except ValueError :
-                isValidDate = False
-
-            if isValidDate == False or int(year) < 2020:
+            validFormat = True
+            try:
+                day,month,year = date.split('/')
+            except ValueError:
+                validFormat = False
                 self.errM.text = 'Fecha invalida'
                 inp += 1
+
+            if (validFormat):
+                isValidDate = True
+                try :
+                    datetime.datetime(int(year),int(month),int(day))
+                except ValueError :
+                    isValidDate = False
+
+                if isValidDate == False or int(year) < 2020:
+                    self.errM.text = 'Fecha invalida'
+                    inp += 1
 
         if inp == 0:
             cur.execute(
@@ -176,8 +205,8 @@ class FourthWindow(Screen):
             opcion1 = cur.fetchall()
             s = str(opcion1)
             if s != '[(1,)]':
-                cur.execute("INSERT INTO medicamentos VALUES(%s, %s, %s, %s, %s)",
-                        (medid, str(nombr), int(unidades), float(price), str(date)))
+                cur.execute("INSERT INTO medicamentos VALUES(%s, %s, %s, %s, %s, %s)",
+                        (medid, str(nombr), int(unidades), float(price), str(date), str(code)))
                 con.commit()
 
                 self.manager.transition.direction = "right"
@@ -207,28 +236,55 @@ class FifthWindow(Screen):
             inp += 1
         if unidades == '':
             unidades = 0
-        elif int(unidades) < 0:
+
+        esint = True
+        try:
+            int(unidades)
+        except ValueError:
+            esint = False
             self.errM.text = 'Cantidad de unidades invalida'
             inp += 1
+        
+        if (esint):
+            if int(unidades) < 0:
+                self.errM.text = 'Cantidad de unidades invalida'
+                inp += 1
         if price == '':
             inp += 1
-        elif float(price) < 0:
+        
+        esint2 = True
+        try:
+            float(price)
+        except ValueError:
+            esint2 = False
             self.errM.text = 'Precio invalido'
             inp += 1
+
+        if (esint2):
+            if float(price) < 0:
+                self.errM.text = 'Precio invalido'
+                inp += 1
         if date == '':
             inp += 1
         else:
-            day,month,year = date.split('/')
-
-            isValidDate = True
-            try :
-                datetime.datetime(int(year),int(month),int(day))
-            except ValueError :
-                isValidDate = False
-
-            if isValidDate == False or int(year) < 2020:
+            validFormat = True
+            try:
+                day,month,year = date.split('/')
+            except ValueError:
+                validFormat = False
                 self.errM.text = 'Fecha invalida'
                 inp += 1
+
+            if (validFormat):
+                isValidDate = True
+                try :
+                    datetime.datetime(int(year),int(month),int(day))
+                except ValueError :
+                    isValidDate = False
+
+                if isValidDate == False or int(year) < 2020:
+                    self.errM.text = 'Fecha invalida'
+                    inp += 1
 
         if inp == 0:
             cur.execute("SELECT * FROM medicamentos WHERE nombre = '" + str(nombr) + "'")
@@ -236,8 +292,8 @@ class FifthWindow(Screen):
             if len(opcion1) == 0:
                 self.errM.text = 'No se encontro el medicamento'
             else:
-                cur.execute("UPDATE medicamentos SET disponible = %s , precio = %s, vencimiento = %s WHERE nombre = %s",
-                        (int(unidades), float(price),  str(date), str(nombr)))
+                cur.execute("UPDATE medicamentos SET disponible = %s , precio = %s, vencimiento = %s, codigo = %s WHERE nombre = %s",
+                        (int(unidades), float(price),  str(date), str(code), str(nombr)))
                 con.commit()
 
                 self.manager.transition.direction = "right"
