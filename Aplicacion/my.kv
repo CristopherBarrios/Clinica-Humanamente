@@ -1,5 +1,6 @@
 WindowManager:
     MainWindow:
+    MenuWindow:
     SecondWindow:
     ThirdWindow:
     FourthWindow:
@@ -15,7 +16,7 @@ WindowManager:
 
         Label:
             size_hint_y: None
-            height: 40
+            height: 10
 
         GridLayout:
             cols: 2
@@ -26,14 +27,15 @@ WindowManager:
 
             Label:
                 size_hint_x: None
-                width: 370
+                width: 430
 
             Image:
                 size_hint_y: None
-                height: 190
+                height: 200
                 size_hint_x: None
-                width: 380
-                source: "Images/clinica.jpg"
+                width: 250
+                source: "Images/clinica.png"
+                allow_stretch: True
 
             Label:
                 size_hint_y: None
@@ -151,14 +153,15 @@ WindowManager:
 
             Label:
                 size_hint_x: None
-                width: 370
+                width: 430
 
             Image:
                 size_hint_y: None
-                height: 190
+                height: 200
                 size_hint_x: None
-                width: 380
-                source: "Images/clinica.jpg"
+                width: 250
+                source: "Images/clinica.png"
+                allow_stretch: True
 
             Label:
                 size_hint_y: None
@@ -347,6 +350,140 @@ WindowManager:
             size_hint_y: None
             height: 20
 
+<MenuWindow>
+    name: "menu"
+
+    GridLayout:
+        cols:1
+        size: root.width, root.height
+        row_default_height: 10
+
+        Label:
+            size_hint_y: None
+            height: 15
+
+        GridLayout:
+            cols: 4
+            size_hint_y: None
+            height: 200
+
+            Label:
+                size_hint_x: None
+                width: 50
+
+            Image:
+                size_hint_y: None
+                height: 200
+                size_hint_x: None
+                width: 270
+                source: "Images/clinica.png"
+                allow_stretch: True
+
+            Label:
+                size_hint_x: None
+                width: 90
+
+            Label:
+                size_hint_x: None
+                width: 400
+                color: 0.04, 0.306, 0.451, 1
+                font_size: 30
+                text: 'Menu de Opciones'
+
+        Label:
+            size_hint_y: None
+            height: 30
+
+        GridLayout:
+            cols: 4
+            size_hint_y: None
+            height: 400
+
+            Label:
+                size_hint_x: None
+                width: 170
+
+            Image:
+                size_hint_y: None
+                height: 80
+                size_hint_x: None
+                width: 220
+                source: "Images/pill.png"
+                allow_stretch: True
+
+            Label:
+                size_hint_x: None
+                width: 170
+
+            Button:
+                background_color: 0.153, 0.675, 0.929, 1
+                font_size: 18
+                size_hint_x: None
+                width: 300
+                size_hint_y: None
+                height: 60
+                text: "Farmacia Virtual"
+                on_release:
+                    root.manager.transition.direction = "left"
+                    app.root.current = 'inventario'
+
+            Label:
+                size_hint_x: None
+                width: 170
+
+            Image:
+                size_hint_y: None
+                height: 80
+                size_hint_x: None
+                width: 220
+                source: "Images/calendar.png"
+                allow_stretch: True
+
+            Label:
+                size_hint_x: None
+                width: 170
+
+            Button:
+                background_color: 0.153, 0.675, 0.929, 1
+                font_size: 18
+                size_hint_x: None
+                width: 300
+                size_hint_y: None
+                height: 60
+                text: "Agendar Cita"
+                on_release:
+                    root.manager.transition.direction = "left"
+                    app.root.current = 'inventario'
+
+            Label:
+                size_hint_x: None
+                width: 170
+
+            Image:
+                size_hint_y: None
+                height: 80
+                size_hint_x: None
+                width: 220
+                source: "Images/clinica.png"
+                allow_stretch: True
+
+            Label:
+                size_hint_x: None
+                width: 170
+
+            Button:
+                background_color: 0.153, 0.675, 0.929, 1
+                font_size: 18
+                size_hint_x: None
+                width: 300
+                size_hint_y: None
+                height: 60
+                text: "Log Out"
+                on_release:
+                    root.manager.transition.direction = "right"
+                    app.root.current = 'log'
+            
+            
 
 <ThirdWindow>
     name: "inventario"
@@ -373,16 +510,17 @@ WindowManager:
                 size_hint_y: None
                 height: 100
                 size_hint_x: None
-                width: 170
-                source: "Images/clinica.jpg"
+                width: 300
+                source: "Images/clinica.png"
+                allow_stretch: True
 
             Label:
                 size_hint_x: None
-                width: 90
+                width: 10
 
             Label:
                 size_hint_x: None
-                width: 500
+                width: 400
                 color: 0.04, 0.306, 0.451, 1
                 font_size: 30
                 text: 'Inventario de Farmacia'
@@ -576,7 +714,8 @@ WindowManager:
                 height: 190
                 size_hint_x: None
                 width: 380
-                source: "Images/clinica.jpg"
+                source: "Images/clinica.png"
+                allow_stretch: True
 
             Label:
                 size_hint_y: None
@@ -797,7 +936,8 @@ WindowManager:
                 height: 190
                 size_hint_x: None
                 width: 380
-                source: "Images/clinica.jpg"
+                source: "Images/clinica.png"
+                allow_stretch: True
 
             Label:
                 size_hint_y: None
@@ -1017,7 +1157,8 @@ WindowManager:
                 height: 190
                 size_hint_x: None
                 width: 380
-                source: "Images/clinica.jpg"
+                source: "Images/clinica.png"
+                allow_stretch: True
 
             Label:
                 size_hint_y: None

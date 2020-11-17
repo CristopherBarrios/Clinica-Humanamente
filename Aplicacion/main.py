@@ -42,7 +42,7 @@ class MainWindow(Screen):
             if s != '[(0,)]':
                 self.errM.text = ''
                 self.manager.transition.direction = "left"
-                self.manager.current = 'inventario'
+                self.manager.current = 'menu'
             else:
                 self.errM.text = 'Usuario o contrasena incorrecta'
 
@@ -85,6 +85,9 @@ class SecondWindow(Screen):
                 self.errM.text = 'Usuario ya existe'
         else:
             self.errM.text = 'Por favor llene todos los campos requeridos'
+
+class MenuWindow(Screen):
+    pass
 
 class ThirdWindow(Screen):
     #Inventario
