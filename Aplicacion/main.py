@@ -92,16 +92,30 @@ class ThirdWindow(Screen):
         meds = []
         cur.execute("SELECT * FROM medicamentos")
         opcion1 = cur.fetchall()
+        print(opcion1)
         for i in opcion1:
-            layout = GridLayout(cols=4, size_hint_y=None, height=40)
+            layout = GridLayout(cols=5, size_hint_y=None, height=40)
             layout.add_widget(Label(text=str(i[1]), font_size=22, color=[0,0,0,1]))
+            if i[2] == None:
+                fecha = 'N/A'
+            else:
+                fecha = i[2]
+            if i[3] == None:
+                precio = 'N/A'
+            else:
+                precio = 'Q: ' + str(i[3])
             if i[4] == None:
                 venci = 'N/A'
             else:
                 venci = i[4]
+            if i[5] == None:
+                codi = 'N/A'
+            else:
+                codi = i[5]
+            layout.add_widget(Label(text=str(codi), font_size=22, color=[0,0,0,1]))
             layout.add_widget(Label(text=str(venci), font_size=22, color=[0,0,0,1]))
-            layout.add_widget(Label(text=str(i[2]), font_size=22, color=[0,0,0,1]))
-            layout.add_widget(Label(text=str('Q: ' + str(i[3])), font_size=22, color=[0,0,0,1]))
+            layout.add_widget(Label(text=str(fecha), font_size=22, color=[0,0,0,1]))
+            layout.add_widget(Label(text=precio, font_size=22, color=[0,0,0,1]))
 
             meds.append(layout)
         
@@ -162,7 +176,7 @@ class FifthWindow(Screen):
                 self.manager.current = 'inventario'
 
 class SixthWindow(Screen):
-    #Eliminat medicamento
+    #Eliminar medicamento
     errM = ObjectProperty(None)
 
     def deleteMed(self):

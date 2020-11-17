@@ -407,7 +407,7 @@ WindowManager:
                     text: 'Inventario'
 
                 GridLayout:
-                    cols: 4
+                    cols: 5
                     size_hint_y: None
                     height: 40
                     canvas.before:
@@ -419,6 +419,10 @@ WindowManager:
 
                     Label:
                         text: 'Medicamento'
+                        color: 0.15, 0.68, 0.93, 1
+                        font_size: 22
+                    Label:
+                        text: 'ATC'
                         color: 0.15, 0.68, 0.93, 1
                         font_size: 22
                     Label:
@@ -437,8 +441,8 @@ WindowManager:
                 ScrollView:
                     background_color: 0.8, 0.8, 0.8, 1
                     size_hint_y: None
-                    height: 350
-                    bar_width: 30
+                    height: 300
+                    bar_width: 20
                     bar_color: 5, 10, 15, .8
                     bar_inactive_color: 5, 20, 10, .5
                     scroll_type: ['bars']
@@ -453,7 +457,7 @@ WindowManager:
                         id: medis
                         cols: 1
                         size_hint_y: None
-                        height: 300
+                        height: 1000
 
             Label:
                 size_hint_x: None
