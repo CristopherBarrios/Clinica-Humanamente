@@ -454,7 +454,7 @@ WindowManager:
                 text: "Agendar Cita"
                 on_release:
                     root.manager.transition.direction = "left"
-                    app.root.current = 'inventario'
+                    app.root.current = 'citas'
 
             Label:
                 size_hint_x: None
@@ -1320,7 +1320,7 @@ WindowManager:
                             pos: self.pos
                             size: self.size
                     font_size: 25
-                    text: 'Inventario'
+                    text: 'Diciembre 2020'
 
                 GridLayout:
                     cols: 5
@@ -1334,7 +1334,7 @@ WindowManager:
                             size: self.size
 
                     Label:
-                        text: 'Fecha'
+                        text: 'Fecha (yy-mm-dd)'
                         color: 0.15, 0.68, 0.93, 1
                         font_size: 22
                     Label:
