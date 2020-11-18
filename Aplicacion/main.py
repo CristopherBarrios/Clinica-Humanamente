@@ -373,13 +373,13 @@ class EigthWindow(Screen):
     #Agregar cita
     errM = ObjectProperty(None)
 
-    def addMed(self):
+    def addCit(self):
         self.errM.text = ''
-        nombr = self.ids.name_field.text
-        code = self.ids.code_field.text
-        date = self.ids.date_field.text
-        price = self.ids.price_field.text
-        unidades = self.ids.unidades_field.text
+        fecha = self.ids.fecha_field.text
+        hora = self.ids.hora_field.text
+        paciente = self.ids.paciente_field.text
+        doctor = self.ids.doctor_field.text
+        desc = self.ids.desc_field.text
 
         #Inputs vacios o invalidos
         inp = 0
@@ -465,7 +465,7 @@ class NinthWindow(Screen):
     #Editar cita
     errM = ObjectProperty(None)
 
-    def editMed(self):
+    def editCit(self):
         self.errM.text = ''
         nombr = self.ids.name_field.text
         code = self.ids.code_field.text
@@ -551,15 +551,15 @@ class TenthWindow(Screen):
     #Eliminar cita
     errM = ObjectProperty(None)
 
-    def deleteMed(self):
+    def deleteCit(self):
         nombr = self.ids.name_field.text
         if nombr != '':
-            cur.execute("SELECT * FROM medicamentos WHERE nombre = '" + str(nombr) + "'")
+            cur.execute("SELECT * FROM pacientes WHERE nombre = '" + str(nombr) + "'")
             opcion1 = cur.fetchall()
             if len(opcion1) == 0:
-                self.errM.text = 'No se encontro el medicamento'
+                self.errM.text = 'No se encontro el paciente indicado'
             else:
-                cur.execute("DELETE FROM medicamentos WHERE nombre= %s", (nombr,))
+                cur.execute("DELETE FROM citas INNER JOIN pacientes ON citas.pacienteid = pacientes.id WHERE pacientes.nombre= %s AND citas.fecha = %s", (nombr, fecha))
                 con.commit()
 
                 self.errM.text = ''
