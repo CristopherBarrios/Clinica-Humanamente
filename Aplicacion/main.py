@@ -326,7 +326,43 @@ class SixthWindow(Screen):
         else:
             self.errM.text = 'Por favor llene todos los campos requeridos'
 
+class SeventhWindow(Screen):
+    #Agendar citas
+    def on_enter(self, *args):
+        medis = self.ids.medis
+        medis.clear_widgets()
+        meds = []
+        cur.execute("SELECT * FROM medicamentos ORDER BY nombre ASC")
+        opcion1 = cur.fetchall()
+        for i in opcion1:
+            layout = GridLayout(cols=5, size_hint_y=None, height=40)
+            layout.add_widget(Label(text=str(i[1]), font_size=22, color=[0,0,0,1]))
+            #Datos vacios
+            if i[2] == None:
+                fecha = 'N/A'
+            else:
+                fecha = i[2]
+            if i[3] == None:
+                precio = 'N/A'
+            else:
+                precio = 'Q: ' + str(i[3])
+            if i[4] == None:
+                venci = 'N/A'
+            else:
+                venci = i[4]
+            if i[5] == None:
+                codi = 'N/A'
+            else:
+                codi = i[5]
+            layout.add_widget(Label(text=str(codi), font_size=22, color=[0,0,0,1]))
+            layout.add_widget(Label(text=str(venci), font_size=22, color=[0,0,0,1]))
+            layout.add_widget(Label(text=str(fecha), font_size=22, color=[0,0,0,1]))
+            layout.add_widget(Label(text=precio, font_size=22, color=[0,0,0,1]))
 
+            meds.append(layout)
+        
+        for i in meds:
+            medis.add_widget(i)
 
 class WindowManager(ScreenManager):
     pass
