@@ -1250,3 +1250,204 @@ WindowManager:
             size_hint_y: None
             height: 20   
             
+<SeventhWindow>
+    name: "citas"
+
+    GridLayout:
+        cols:1
+        size: root.width, root.height
+        row_default_height: 10
+
+        Label:
+            size_hint_y: None
+            height: 15
+
+        GridLayout:
+            cols: 4
+            size_hint_y: None
+            height: 100
+
+            Label:
+                size_hint_x: None
+                width: 50
+
+            Image:
+                size_hint_y: None
+                height: 100
+                size_hint_x: None
+                width: 300
+                source: "Images/clinica.png"
+                allow_stretch: True
+
+            Label:
+                size_hint_x: None
+                width: 10
+
+            Label:
+                size_hint_x: None
+                width: 400
+                color: 0.04, 0.306, 0.451, 1
+                font_size: 30
+                text: 'Citas Agendadas'
+
+        Label:
+            size_hint_y: None
+            height: 20
+
+        GridLayout:
+            cols: 3
+            size_hint_y: None
+            height: 400
+
+            Label:
+                size_hint_x: None
+                width: 50
+
+            GridLayout:
+                cols: 1
+                size_hint_y: None
+                height: 420
+
+                Label:
+                    size_hint_y: None
+                    height: 40
+                    color: 0.15, 0.68, 0.93, 1
+                    canvas.before:
+                        Color:
+                            rgba: 0.04, 0.306, 0.451, 1
+                        Rectangle:
+                            pos: self.pos
+                            size: self.size
+                    font_size: 25
+                    text: 'Inventario'
+
+                GridLayout:
+                    cols: 5
+                    size_hint_y: None
+                    height: 40
+                    canvas.before:
+                        Color:
+                            rgba: 0.04, 0.392, 0.584, 1
+                        Rectangle:
+                            pos: self.pos
+                            size: self.size
+
+                    Label:
+                        text: 'Fecha'
+                        color: 0.15, 0.68, 0.93, 1
+                        font_size: 22
+                    Label:
+                        text: 'Hora'
+                        color: 0.15, 0.68, 0.93, 1
+                        font_size: 22
+                    Label:
+                        text: 'Paciente'
+                        color: 0.15, 0.68, 0.93, 1
+                        font_size: 22
+                    Label:
+                        text: 'Doctor'
+                        color: 0.15, 0.68, 0.93, 1
+                        font_size: 22
+                    Label:
+                        text: 'Descripcion'
+                        color: 0.15, 0.68, 0.93, 1
+                        font_size: 22
+
+                ScrollView:
+                    background_color: 0.8, 0.8, 0.8, 1
+                    size_hint_y: None
+                    height: 300
+                    bar_width: 20
+                    bar_color: 5, 10, 15, .8
+                    bar_inactive_color: 5, 20, 10, .5
+                    scroll_type: ['bars']
+                    canvas.before:
+                        Color:
+                            rgba: 0.8, 0.8, 0.8, 1
+                        Rectangle:
+                            pos: self.pos
+                            size: self.size
+
+                    GridLayout:
+                        id: cits
+                        cols: 1
+                        size_hint_y: None
+                        height: 1000
+
+            Label:
+                size_hint_x: None
+                width: 50
+
+        GridLayout:
+            cols: 6
+            size_hint_y: None
+            height: 50
+
+            Label:
+                size_hint_x: None
+                width: 50
+
+            Button:
+                background_color: 1, 1, 1, 0.3
+                color: 0, 0, 0, 1
+                font_size: 20
+                size_hint_x: None
+                width: 200
+                text: 'Agregar'
+                on_release:
+                    app.root.current = 'add'
+                    root.manager.transition.direction = "left"
+
+            Label:
+                size_hint_x: None
+                width: 200
+
+            Button:
+                background_color: 1, 1, 1, 0.3
+                color: 0, 0, 0, 1
+                font_size: 20
+                size_hint_x: None
+                width: 200
+                text: 'Editar'
+                on_release:
+                    app.root.current = 'edit'
+                    root.manager.transition.direction = "left"
+
+            Label:
+                size_hint_x: None
+                width: 200
+
+            Button:
+                background_color: 1, 1, 1, 0.3
+                color: 0, 0, 0, 1
+                font_size: 20
+                size_hint_x: None
+                width: 200
+                text: 'Eliminar'
+                on_release:
+                    app.root.current = 'delete'
+                    root.manager.transition.direction = "left"
+
+        Label:
+            size_hint_y: None
+            height: 20
+
+        GridLayout:
+            cols:2
+            size_hint_x: None
+            width: 650
+            size_hint_y: None
+            height: 50
+
+            Label:
+
+                text: ""
+            Button:
+                background_color: 0.153, 0.675, 0.929, 1
+                font_size: 18
+                size_hint_x: None
+                width: 200
+                text: "Regresar"
+                on_release:
+                    app.root.current = 'log'
+                    root.manager.transition.direction = "right"
