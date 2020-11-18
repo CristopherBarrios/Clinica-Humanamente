@@ -7,6 +7,9 @@ WindowManager:
     FifthWindow:
     SixthWindow:
     SeventhWindow:
+    EightWindow:
+    NinthWindow:
+    TenthWindow:
 
 <MainWindow>:
     name: "log"
@@ -1396,7 +1399,7 @@ WindowManager:
                 width: 200
                 text: 'Agregar'
                 on_release:
-                    app.root.current = 'add'
+                    app.root.current = 'addc'
                     root.manager.transition.direction = "left"
 
             Label:
@@ -1411,7 +1414,7 @@ WindowManager:
                 width: 200
                 text: 'Editar'
                 on_release:
-                    app.root.current = 'edit'
+                    app.root.current = 'editc'
                     root.manager.transition.direction = "left"
 
             Label:
@@ -1426,7 +1429,7 @@ WindowManager:
                 width: 200
                 text: 'Eliminar'
                 on_release:
-                    app.root.current = 'delete'
+                    app.root.current = 'deletec'
                     root.manager.transition.direction = "left"
 
         Label:
@@ -1452,3 +1455,566 @@ WindowManager:
                 on_release:
                     app.root.current = 'menu'
                     root.manager.transition.direction = "right"
+
+<EightWindow>
+    name: "addc"
+    errM: errM
+
+    GridLayout:
+        cols: 1
+
+        Label:
+            size_hint_y: None
+            height: 10
+
+        GridLayout:
+            cols: 2
+            size_hint_x: None
+            width: 670
+            size_hint_y: None
+            height: 250
+
+            Label:
+                size_hint_x: None
+                width: 370
+
+            Image:
+                size_hint_y: None
+                height: 190
+                size_hint_x: None
+                width: 380
+                source: "Images/clinica.png"
+                allow_stretch: True
+
+            Label:
+                size_hint_y: None
+                height: 10
+            
+            Label:
+                color: 0.04, 0.306, 0.451, 1
+                font_size: 22
+                text: 'Agregar Medicamento'
+
+        GridLayout:
+            cols: 3
+            size_hint_x: None
+            width: 670
+            size_hint_y: None
+            height: 350
+
+
+            Label:
+                size_hint_x: None
+                width: 10
+
+            Label:
+                color: 0.04, 0.306, 0.451, 1
+                text: "NOMBRE"
+
+            TextInput:
+                id: name_field
+                background_color: 0,6, 0.6, 0.6, 1
+                multiline: False
+                focus: True
+                text: ""
+
+            Label:
+                size_hint_x: None
+                width: 10
+            Label:
+                size_hint_x: None
+                width: 10
+            Label:
+                size_hint_x: None
+                width: 10
+
+            Label:
+                size_hint_x: None
+                width: 10
+
+            Label:
+                color: 0.04, 0.306, 0.451, 1
+                text: "CODIGO ATC"
+
+            TextInput:
+                id: code_field
+                background_color: 0,6, 0.6, 0.6, 1
+                multiline: False
+                focus: True
+                text: ""
+
+            Label:
+                size_hint_x: None
+                width: 10
+            Label:
+                size_hint_x: None
+                width: 10
+            Label:
+                size_hint_x: None
+                width: 10
+
+
+            Label:
+                size_hint_x: None
+                width: 10
+
+            Label:
+                color: 0.04, 0.306, 0.451, 1
+                text: "FECHA DE VENCIMIENTO"
+
+            TextInput:
+                id: date_field
+                background_color: 0,6, 0.6, 0.6, 1
+                multiline: False
+                hint_text: 'dd/mm/yy'
+                focus: True
+                text: ""
+
+            
+            Label:
+                size_hint_x: None
+                width: 10
+            Label:
+                size_hint_x: None
+                width: 10
+            Label:
+                size_hint_x: None
+                width: 10
+
+            Label:
+                size_hint_x: None
+                width: 10
+
+            Label:
+                color: 0.04, 0.306, 0.451, 1
+                text: "UNIDADES"
+
+            TextInput:
+                id: unidades_field
+                background_color: 0,6, 0.6, 0.6, 1
+                multiline: False
+                focus: True
+                text: ""
+
+            Label:
+                size_hint_x: None
+                width: 10
+            Label:
+                size_hint_x: None
+                width: 10
+            Label:
+                size_hint_x: None
+                width: 10
+
+            Label:
+                size_hint_x: None
+                width: 10
+
+            Label:
+                color: 0.04, 0.392, 0.584, 1
+                text: "PRECIO"
+
+            TextInput:
+                id: price_field
+                background_color: 0,6, 0.6, 0.6, 1
+                multiline: False
+                text: ""
+
+            Label:
+                size_hint_x: None
+                width: 10
+            Label:
+                size_hint_x: None
+                width: 10
+            Label:
+                size_hint_x: None
+                width: 10
+
+            Label:
+                size_hint_y: None
+                height: 5
+            Label:
+                text: ""
+
+            Label:
+                color: 0.04, 0.392, 0.584, 1
+                id: errM
+                text: ""
+
+            Label:
+                size_hint_y: None
+                height: 5
+
+
+        GridLayout:
+            cols:3
+            size_hint_x: None
+            width: 760
+            size_hint_y: None
+            height: 50
+
+            Label:
+
+                text: ""
+            Button:
+                background_color: 0.153, 0.675, 0.929, 1
+                font_size: 18
+                size_hint_x: None
+                width: 200
+                text: "Regresar"
+                on_release:
+                    root.manager.transition.direction = "right"
+                    app.root.current = 'inventario'
+            Button:
+                background_color: 0.153, 0.675, 0.929, 1
+                font_size: 18
+                size_hint_x: None
+                width: 200
+                text: "Agregar"
+                on_release:
+                    root.addMed()
+
+        Label:
+            size_hint_y: None
+            height: 20
+
+<NinthWindow>
+    name: "editc"
+    errM: errM
+
+    GridLayout:
+        cols: 1
+
+        Label:
+            size_hint_y: None
+            height: 10
+
+        GridLayout:
+            cols: 2
+            size_hint_x: None
+            width: 670
+            size_hint_y: None
+            height: 250
+
+            Label:
+                size_hint_x: None
+                width: 370
+
+            Image:
+                size_hint_y: None
+                height: 190
+                size_hint_x: None
+                width: 380
+                source: "Images/clinica.png"
+                allow_stretch: True
+
+            Label:
+                size_hint_y: None
+                height: 10
+            
+            Label:
+                color: 0.04, 0.306, 0.451, 1
+                font_size: 22
+                text: 'Editar Medicamento'
+
+        GridLayout:
+            cols: 3
+            size_hint_x: None
+            width: 670
+            size_hint_y: None
+            height: 350
+
+
+            Label:
+                size_hint_x: None
+                width: 10
+
+            Label:
+                color: 0.04, 0.306, 0.451, 1
+                text: "MEDICAMENTO A EDITAR"
+
+            TextInput:
+                id: name_field
+                background_color: 0,6, 0.6, 0.6, 1
+                multiline: False
+                focus: True
+                text: ""
+
+            Label:
+                size_hint_x: None
+                width: 10
+            Label:
+                size_hint_x: None
+                width: 10
+            Label:
+                size_hint_x: None
+                width: 10
+
+            Label:
+                size_hint_x: None
+                width: 10
+
+            Label:
+                color: 0.04, 0.306, 0.451, 1
+                text: "CODIGO ATC"
+
+            TextInput:
+                id: code_field
+                background_color: 0,6, 0.6, 0.6, 1
+                multiline: False
+                focus: True
+                text: ""
+
+            Label:
+                size_hint_x: None
+                width: 10
+            Label:
+                size_hint_x: None
+                width: 10
+            Label:
+                size_hint_x: None
+                width: 10
+
+            Label:
+                size_hint_x: None
+                width: 10
+
+            Label:
+                color: 0.04, 0.306, 0.451, 1
+                text: "FECHA DE VENCIMIENTO"
+
+            TextInput:
+                id: date_field
+                background_color: 0,6, 0.6, 0.6, 1
+                multiline: False
+                hint_text: 'dd/mm/yy'
+                focus: True
+                text: ""
+
+            
+            Label:
+                size_hint_x: None
+                width: 10
+            Label:
+                size_hint_x: None
+                width: 10
+            Label:
+                size_hint_x: None
+                width: 10
+
+            Label:
+                size_hint_x: None
+                width: 10
+
+            Label:
+                color: 0.04, 0.306, 0.451, 1
+                text: "UNIDADES"
+
+            TextInput:
+                id: unidades_field
+                background_color: 0,6, 0.6, 0.6, 1
+                multiline: False
+                focus: True
+                text: ""
+
+            Label:
+                size_hint_x: None
+                width: 10
+            Label:
+                size_hint_x: None
+                width: 10
+            Label:
+                size_hint_x: None
+                width: 10
+
+            Label:
+                size_hint_x: None
+                width: 10
+
+            Label:
+                color: 0.04, 0.392, 0.584, 1
+                text: "PRECIO"
+
+            TextInput:
+                id: price_field
+                background_color: 0,6, 0.6, 0.6, 1
+                multiline: False
+                text: ""
+
+            Label:
+                size_hint_x: None
+                width: 10
+            Label:
+                size_hint_x: None
+                width: 10
+            Label:
+                size_hint_x: None
+                width: 10
+
+            Label:
+                size_hint_y: None
+                height: 5
+            Label:
+                text: ""
+
+            Label:
+                color: 0.04, 0.392, 0.584, 1
+                id: errM
+                text: ""
+
+            Label:
+                size_hint_y: None
+                height: 5
+
+
+        GridLayout:
+            cols: 3
+            size_hint_x: None
+            width: 760
+            size_hint_y: None
+            height: 50
+
+            Label:
+
+                text: ""
+            Button:
+                background_color: 0.153, 0.675, 0.929, 1
+                font_size: 18
+                size_hint_x: None
+                width: 200
+                text: "Regresar"
+                on_release:
+                    root.manager.transition.direction = "right"
+                    app.root.current = 'inventario'
+            Button:
+                background_color: 0.153, 0.675, 0.929, 1
+                font_size: 18
+                size_hint_x: None
+                width: 200
+                text: "Confirmar"
+                on_release:
+                    root.editMed()
+
+        Label:
+            size_hint_y: None
+            height: 20   
+
+<TenthWindow>
+    name: "deletec"
+    errM: errM
+
+    GridLayout:
+        cols: 1
+
+        Label:
+            size_hint_y: None
+            height: 10
+
+        GridLayout:
+            cols: 2
+            size_hint_x: None
+            width: 670
+            size_hint_y: None
+            height: 300
+
+            Label:
+                size_hint_x: None
+                width: 370
+
+            Image:
+                size_hint_y: None
+                height: 190
+                size_hint_x: None
+                width: 380
+                source: "Images/clinica.png"
+                allow_stretch: True
+
+            Label:
+                size_hint_y: None
+                height: 30
+            
+            Label:
+                color: 0.04, 0.306, 0.451, 1
+                font_size: 22
+                text: 'Eliminar Medicamento'
+
+        GridLayout:
+            cols: 3
+            size_hint_x: None
+            width: 670
+            size_hint_y: None
+            height: 100
+
+
+            Label:
+                size_hint_x: None
+                width: 10
+
+            Label:
+                color: 0.04, 0.306, 0.451, 1
+                text: "MEDICAMENTO A ELIMINAR"
+
+            TextInput:
+                id: name_field
+                background_color: 0,6, 0.6, 0.6, 1
+                multiline: False
+                focus: True
+                text: ""
+
+            Label:
+                size_hint_x: None
+                width: 10
+            Label:
+                size_hint_x: None
+                width: 10
+            Label:
+                size_hint_x: None
+                width: 10
+
+            Label:
+                size_hint_y: None
+                height: 5
+            Label:
+                text: ""
+
+            Label:
+                color: 0.04, 0.392, 0.584, 1
+                id: errM
+                text: ""
+
+            Label:
+                size_hint_y: None
+                height: 5
+
+
+        GridLayout:
+            cols: 3
+            size_hint_x: None
+            width: 760
+            size_hint_y: None
+            height: 50
+
+            Label:
+
+                text: ""
+            Button:
+                background_color: 0.153, 0.675, 0.929, 1
+                font_size: 18
+                size_hint_x: None
+                width: 200
+                text: "Regresar"
+                on_release:
+                    root.manager.transition.direction = "right"
+                    app.root.current = 'inventario'
+            Button:
+                background_color: 0.153, 0.675, 0.929, 1
+                font_size: 18
+                size_hint_x: None
+                width: 200
+                text: "Confirmar"
+                on_release:
+                    root.deleteMed()
+
+        Label:
+            size_hint_y: None
+            height: 20  

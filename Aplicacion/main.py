@@ -369,6 +369,206 @@ class SeventhWindow(Screen):
         for i in citas:
             cits.add_widget(i)
 
+class EigthWindow(Screen):
+    #Agregar cita
+    errM = ObjectProperty(None)
+
+    def addMed(self):
+        self.errM.text = ''
+        nombr = self.ids.name_field.text
+        code = self.ids.code_field.text
+        date = self.ids.date_field.text
+        price = self.ids.price_field.text
+        unidades = self.ids.unidades_field.text
+
+        #Inputs vacios o invalidos
+        inp = 0
+        if nombr == '':
+            inp += 1
+        if code == '':
+            inp += 1
+        if unidades == '':
+            unidades = 0
+
+        esint = True
+        try:
+            int(unidades)
+        except ValueError:
+            esint = False
+            self.errM.text = 'Cantidad de unidades invalida'
+            inp += 1
+        
+        if (esint):
+            if int(unidades) < 0:
+                self.errM.text = 'Cantidad de unidades invalida'
+                inp += 1
+        if price == '':
+            inp += 1
+        
+        esint2 = True
+        try:
+            float(price)
+        except ValueError:
+            esint2 = False
+            self.errM.text = 'Precio invalido'
+            inp += 1
+
+        if (esint2):
+            if float(price) < 0:
+                self.errM.text = 'Precio invalido'
+                inp += 1
+        if date == '':
+            inp += 1
+        else:
+            validFormat = True
+            try:
+                day,month,year = date.split('/')
+            except ValueError:
+                validFormat = False
+                self.errM.text = 'Fecha invalida'
+                inp += 1
+
+            if (validFormat):
+                isValidDate = True
+                try :
+                    datetime.datetime(int(year),int(month),int(day))
+                except ValueError :
+                    isValidDate = False
+
+                if isValidDate == False or int(year) < 2020:
+                    self.errM.text = 'Fecha invalida'
+                    inp += 1
+
+        if inp == 0:
+            cur.execute(
+                "SELECT MAX(id) + 1 FROM medicamentos")
+            opcion3 = cur.fetchall()
+            medid = int(opcion3[0][0])
+
+            #Verificar que no este registrado
+            cur.execute("SELECT COUNT(*) FROM medicamentos WHERE nombre = '" + nombr + "'")
+            opcion1 = cur.fetchall()
+            s = str(opcion1)
+            if s != '[(1,)]':
+                cur.execute("INSERT INTO medicamentos VALUES(%s, %s, %s, %s, %s, %s)",
+                        (medid, str(nombr), int(unidades), float(price), str(date), str(code)))
+                con.commit()
+
+                self.manager.transition.direction = "right"
+                self.manager.current = 'inventario'
+            else:
+                self.errM.text = 'El medicamento ya esta registrado'
+        elif self.errM.text == '':
+            self.errM.text = 'Por favor llene todos los campos requeridos'
+
+class NinthWindow(Screen):
+    #Editar cita
+    errM = ObjectProperty(None)
+
+    def editMed(self):
+        self.errM.text = ''
+        nombr = self.ids.name_field.text
+        code = self.ids.code_field.text
+        date = self.ids.date_field.text
+        price = self.ids.price_field.text
+        unidades = self.ids.unidades_field.text
+
+        #Inputs vacios o invalidos
+        inp = 0
+        if nombr == '':
+            inp += 1
+        if code == '':
+            inp += 1
+        if unidades == '':
+            unidades = 0
+
+        esint = True
+        try:
+            int(unidades)
+        except ValueError:
+            esint = False
+            self.errM.text = 'Cantidad de unidades invalida'
+            inp += 1
+        
+        if (esint):
+            if int(unidades) < 0:
+                self.errM.text = 'Cantidad de unidades invalida'
+                inp += 1
+        if price == '':
+            inp += 1
+        
+        esint2 = True
+        try:
+            float(price)
+        except ValueError:
+            esint2 = False
+            self.errM.text = 'Precio invalido'
+            inp += 1
+
+        if (esint2):
+            if float(price) < 0:
+                self.errM.text = 'Precio invalido'
+                inp += 1
+        if date == '':
+            inp += 1
+        else:
+            validFormat = True
+            try:
+                day,month,year = date.split('/')
+            except ValueError:
+                validFormat = False
+                self.errM.text = 'Fecha invalida'
+                inp += 1
+
+            if (validFormat):
+                isValidDate = True
+                try :
+                    datetime.datetime(int(year),int(month),int(day))
+                except ValueError :
+                    isValidDate = False
+
+                if isValidDate == False or int(year) < 2020:
+                    self.errM.text = 'Fecha invalida'
+                    inp += 1
+
+        if inp == 0:
+            cur.execute("SELECT * FROM medicamentos WHERE nombre = '" + str(nombr) + "'")
+            opcion1 = cur.fetchall()
+            if len(opcion1) == 0:
+                self.errM.text = 'No se encontro el medicamento'
+            else:
+                cur.execute("UPDATE medicamentos SET disponible = %s , precio = %s, vencimiento = %s, codigo = %s WHERE nombre = %s",
+                        (int(unidades), float(price),  str(date), str(code), str(nombr)))
+                con.commit()
+
+                self.manager.transition.direction = "right"
+                self.manager.current = 'inventario'
+        elif self.errM.text == '':
+            self.errM.text = 'Por favor llene todos los campos requeridos'
+
+
+class TenthWindow(Screen):
+    #Eliminar cita
+    errM = ObjectProperty(None)
+
+    def deleteMed(self):
+        nombr = self.ids.name_field.text
+        if nombr != '':
+            cur.execute("SELECT * FROM medicamentos WHERE nombre = '" + str(nombr) + "'")
+            opcion1 = cur.fetchall()
+            if len(opcion1) == 0:
+                self.errM.text = 'No se encontro el medicamento'
+            else:
+                cur.execute("DELETE FROM medicamentos WHERE nombre= %s", (nombr,))
+                con.commit()
+
+                self.errM.text = ''
+                self.manager.transition.direction = "right"
+                self.manager.current = 'inventario'
+        else:
+            self.errM.text = 'Por favor llene todos los campos requeridos'
+
+
 class WindowManager(ScreenManager):
     pass
 
