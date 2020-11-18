@@ -337,6 +337,16 @@ class SeventhWindow(Screen):
         for i in opcion1:
             layout = GridLayout(cols=5, size_hint_y=None, height=40)
             layout.add_widget(Label(text=str(i[1]), font_size=20, color=[0,0,0,1]))
+            pacienteid = i[4]
+            cur.execute("SELECT nombre FROM pacientes WHERE id = " + str(pacienteid))
+            pacientec = cur.fetchall()
+            nombrep = str(pacientec[0][0])
+
+            doctorid = i[5]
+            cur.execute("SELECT nombre FROM doctores WHERE id = " + str(doctorid))
+            doctorc = cur.fetchall()
+            nombred = str(doctorc[0][0])
+
             #Datos vacios
             if i[2] == None:
                 hora = 'N/A'
@@ -346,12 +356,10 @@ class SeventhWindow(Screen):
                 descripcion = 'N/A'
             else:
                 descripcion = str(i[3])
-            pacienteid = i[4]
-            doctorid = i[5]
 
             layout.add_widget(Label(text=str(hora), font_size=20, color=[0,0,0,1]))
-            layout.add_widget(Label(text=str(pacienteid), font_size=20, color=[0,0,0,1]))
-            layout.add_widget(Label(text=str(doctorid), font_size=20, color=[0,0,0,1]))
+            layout.add_widget(Label(text=str(nombrep), font_size=20, color=[0,0,0,1]))
+            layout.add_widget(Label(text=str(nombred), font_size=20, color=[0,0,0,1]))
             layout.add_widget(Label(text=descripcion, font_size=20, color=[0,0,0,1]))
 
             citas.append(layout)
