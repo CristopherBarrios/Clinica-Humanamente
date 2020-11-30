@@ -375,48 +375,21 @@ class EigthWindow(Screen):
 
     def addCit(self):
         self.errM.text = ''
-        fecha = self.ids.fecha_field.text
-        hora = self.ids.hora_field.text
+        date = self.ids.fecha_field.text
+        time = self.ids.hora_field.text
         paciente = self.ids.paciente_field.text
         doctor = self.ids.doctor_field.text
         desc = self.ids.desc_field.text
 
         #Inputs vacios o invalidos
         inp = 0
-        if nombr == '':
+        if paciente == '':
             inp += 1
-        if code == '':
+        if doctor == '':
             inp += 1
-        if unidades == '':
-            unidades = 0
-
-        esint = True
-        try:
-            int(unidades)
-        except ValueError:
-            esint = False
-            self.errM.text = 'Cantidad de unidades invalida'
-            inp += 1
-        
-        if (esint):
-            if int(unidades) < 0:
-                self.errM.text = 'Cantidad de unidades invalida'
-                inp += 1
-        if price == '':
-            inp += 1
-        
-        esint2 = True
-        try:
-            float(price)
-        except ValueError:
-            esint2 = False
-            self.errM.text = 'Precio invalido'
+        if desc == '':
             inp += 1
 
-        if (esint2):
-            if float(price) < 0:
-                self.errM.text = 'Precio invalido'
-                inp += 1
         if date == '':
             inp += 1
         else:
@@ -438,26 +411,56 @@ class EigthWindow(Screen):
                 if isValidDate == False or int(year) < 2020:
                     self.errM.text = 'Fecha invalida'
                     inp += 1
+        
+        if time == '':
+            inp += 1
+        else:
+            try:
+                datetime.datetime.strptime(time, "%H:%M")
+            except ValueError:
+                self.errM.text = 'Hora invalida'
+                inp += 1
 
         if inp == 0:
             cur.execute(
-                "SELECT MAX(id) + 1 FROM medicamentos")
+                "SELECT MAX(id) + 1 FROM citas")
             opcion3 = cur.fetchall()
-            medid = int(opcion3[0][0])
+            citaid = int(opcion3[0][0])
 
-            #Verificar que no este registrado
-            cur.execute("SELECT COUNT(*) FROM medicamentos WHERE nombre = '" + nombr + "'")
+            #Verificar que exista doctor y agarrar id
+            cur.execute("SELECT id FROM doctores WHERE nombre = '" + doctor + "'")
             opcion1 = cur.fetchall()
-            s = str(opcion1)
-            if s != '[(1,)]':
-                cur.execute("INSERT INTO medicamentos VALUES(%s, %s, %s, %s, %s, %s)",
-                        (medid, str(nombr), int(unidades), float(price), str(date), str(code)))
-                con.commit()
+            if len(opcion1) > 0:
+                doctorid = opcion1[0][0]
 
-                self.manager.transition.direction = "right"
-                self.manager.current = 'inventario'
+                #Verificar que exista paciente y agarrar id
+                cur.execute("SELECT id FROM pacientes WHERE nombre = '" + paciente + "'")
+                opcion1 = cur.fetchall()
+                if len(opcion1) > 0:
+                    pacienteid = opcion1[0][0]
+                    #Verificar que no hay cita
+                    day,month,year = date.split('/')
+                    fecha = year + '-' + month + '-' + day
+                    hour = int(time.split(':')[0])
+                    mintime = str(hour - 1) + ':00'
+                    maxtime = str(hour + 2) + ':00'
+                    cur.execute("SELECT COUNT(*) FROM citas WHERE fecha = '" + fecha + "' and hora > '" + mintime + "' and hora < '" + maxtime + "' and (doctorid = " + str(doctorid) + " or pacienteid = " + str(pacienteid) + ")")
+                    opcion1 = cur.fetchall()
+                    s = str(opcion1)
+                    if s == '[(0,)]':
+                        
+                        cur.execute("INSERT INTO citas VALUES(%s, %s, %s, %s, %s, %s)",
+                                (citaid, str(fecha), str(time), str(desc), int(pacienteid), int(doctorid)))
+                        con.commit()
+
+                        self.manager.transition.direction = "right"
+                        self.manager.current = 'citas'
+                    else:
+                        self.errM.text = 'El doctor no esta disponible o el paciente tiene otra cita durante ese tiempo'
+                else:
+                    self.errM.text = 'Paciente incorrecto o no esta registrado'
             else:
-                self.errM.text = 'El medicamento ya esta registrado'
+                self.errM.text = 'Doctor incorrecto o no esta registrado'
         elif self.errM.text == '':
             self.errM.text = 'Por favor llene todos los campos requeridos'
 
@@ -553,19 +556,68 @@ class TenthWindow(Screen):
 
     def deleteCit(self):
         nombr = self.ids.name_field.text
-        if nombr != '':
-            cur.execute("SELECT * FROM pacientes WHERE nombre = '" + str(nombr) + "'")
+        date = self.ids.date_field.text
+        time = self.ids.hora_field.text
+        
+        inp = 0
+        
+        if nombr == '':
+            inp += 1
+        
+        if date == '':
+            inp += 1
+        else:
+            validFormat = True
+            try:
+                day,month,year = date.split('/')
+            except ValueError:
+                validFormat = False
+                self.errM.text = 'Fecha invalida'
+                inp += 1
+
+            if (validFormat):
+                isValidDate = True
+                try :
+                    datetime.datetime(int(year),int(month),int(day))
+                except ValueError :
+                    isValidDate = False
+
+                if isValidDate == False or int(year) < 2020:
+                    self.errM.text = 'Fecha invalida'
+                    inp += 1
+
+        if time == '':
+            inp += 1
+        else:
+            try:
+                datetime.datetime.strptime(time, "%H:%M")
+            except ValueError:
+                self.errM.text = 'Hora invalida'
+                inp += 1
+
+        if inp == 0:
+            cur.execute("SELECT id FROM pacientes WHERE nombre = '" + str(nombr) + "'")
             opcion1 = cur.fetchall()
             if len(opcion1) == 0:
                 self.errM.text = 'No se encontro el paciente indicado'
             else:
-                cur.execute("DELETE FROM citas INNER JOIN pacientes ON citas.pacienteid = pacientes.id WHERE pacientes.nombre= %s AND citas.fecha = %s", (nombr, fecha))
-                con.commit()
+                pacienteid = opcion1[0][0]
+                #Verificar que hay cita
+                day,month,year = date.split('/')
+                fecha = year + '-' + month + '-' + day
+                cur.execute("SELECT COUNT(*) FROM citas WHERE fecha = '" + fecha + "' and hora = '" + time + "' and pacienteid = " + str(pacienteid))
+                opcion1 = cur.fetchall()
+                s = str(opcion1)
+                if s != '[(0,)]':
+                    cur.execute("DELETE FROM citas WHERE pacienteid = %s and fecha = %s and hora = %s", (str(pacienteid), fecha, time))
+                    con.commit()
 
-                self.errM.text = ''
-                self.manager.transition.direction = "right"
-                self.manager.current = 'inventario'
-        else:
+                    self.errM.text = ''
+                    self.manager.transition.direction = "right"
+                    self.manager.current = 'citas'
+                else:
+                    self.errM.text = 'No se encontro la cita'
+        elif self.errM.text == '':
             self.errM.text = 'Por favor llene todos los campos requeridos'
 
 
