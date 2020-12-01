@@ -10,6 +10,7 @@ WindowManager:
     EigthWindow:
     NinthWindow:
     TenthWindow:
+    EleventhWindow:
 
 <MainWindow>:
     name: "log"
@@ -1723,8 +1724,18 @@ WindowManager:
             size_hint_x: None
             width: 670
             size_hint_y: None
-            height: 350
+            height: 300
 
+
+            Label:
+                size_hint_y: None
+                height: 5
+            Label:
+                text: ""
+
+            Label:
+                color: 0.04, 0.306, 0.451, 1
+                text: "Ingrese los datos de la cita que desea editar"
 
             Label:
                 size_hint_x: None
@@ -1735,8 +1746,9 @@ WindowManager:
                 text: "FECHA DE CITA A EDITAR"
 
             TextInput:
-                id: name_field
+                id: date_field
                 background_color: 0,6, 0.6, 0.6, 1
+                hint_text: 'dd/mm/yy'
                 multiline: False
                 focus: True
                 text: ""
@@ -1760,8 +1772,9 @@ WindowManager:
                 text: "HORA"
 
             TextInput:
-                id: code_field
+                id: hora_field
                 background_color: 0,6, 0.6, 0.6, 1
+                hint_text: 'hh:mm'
                 multiline: False
                 focus: True
                 text: ""
@@ -1785,10 +1798,216 @@ WindowManager:
                 text: "PACIENTE"
 
             TextInput:
-                id: date_field
+                id: patient_field
+                background_color: 0,6, 0.6, 0.6, 1
+                multiline: False
+                focus: True
+                text: ""
+
+            Label:
+                size_hint_y: None
+                height: 5
+            Label:
+                text: ""
+
+            Label:
+                color: 1, 0, 0, 1
+                id: errM
+                text: ""
+
+            Label:
+                size_hint_y: None
+                height: 5
+
+
+        GridLayout:
+            cols: 3
+            size_hint_x: None
+            width: 760
+            size_hint_y: None
+            height: 110
+
+            Label:
+
+                text: ""
+            Button:
+                background_color: 0.153, 0.675, 0.929, 1
+                font_size: 18
+                size_hint_x: None
+                width: 200
+                text: "Regresar"
+                on_release:
+                    root.manager.transition.direction = "right"
+                    app.root.current = 'citas'
+            Button:
+                background_color: 0.153, 0.675, 0.929, 1
+                font_size: 18
+                size_hint_x: None
+                width: 200
+                text: "Continuar"
+                on_release:
+                    root.editCit()
+            
+            Label:
+                size_hint_y: None
+                height: 10
+                size_hint_x: None
+                width: 350
+            Label:
+                size_hint_y: None
+                height: 10
+            Label:
+                size_hint_y: None
+                height: 10
+
+            Label:
+
+                text: ""
+            Button:
+                background_color: 0.153, 0.675, 0.929, 1
+                font_size: 18
+                size_hint_x: None
+                width: 200
+                text: "Agregar Paciente"
+                on_release:
+                    root.editCit()
+
+            Button:
+                background_color: 0.153, 0.675, 0.929, 1
+                font_size: 18
+                size_hint_x: None
+                width: 200
+                text: "Agregar Doctor"
+                on_release:
+                    root.manager.transition.direction = "right"
+                    app.root.current = 'citas'
+
+        Label:
+            size_hint_y: None
+            height: 20   
+
+<TenthWindow>
+    name: "editci"
+    errM: errM
+
+    GridLayout:
+        cols: 1
+
+        Label:
+            size_hint_y: None
+            height: 10
+
+        GridLayout:
+            cols: 2
+            size_hint_x: None
+            width: 670
+            size_hint_y: None
+            height: 250
+
+            Label:
+                size_hint_x: None
+                width: 370
+
+            Image:
+                size_hint_y: None
+                height: 190
+                size_hint_x: None
+                width: 380
+                source: "Images/clinica.png"
+                allow_stretch: True
+
+            Label:
+                size_hint_y: None
+                height: 10
+            
+            Label:
+                color: 0.04, 0.306, 0.451, 1
+                font_size: 22
+                text: 'Editar Cita'
+
+        GridLayout:
+            cols: 3
+            size_hint_x: None
+            width: 670
+            size_hint_y: None
+            height: 350
+
+
+            Label:
+                size_hint_y: None
+                height: 5
+            Label:
+                text: ""
+
+            Label:
+                color: 0.04, 0.392, 0.584, 1
+                text: "Ingrese los nuevos datos de la cita"
+
+            Label:
+                size_hint_x: None
+                width: 10
+
+            Label:
+                color: 0.04, 0.306, 0.451, 1
+                text: "FECHA"
+
+            TextInput:
+                id: fecha_field
                 background_color: 0,6, 0.6, 0.6, 1
                 multiline: False
                 hint_text: 'dd/mm/yy'
+                focus: True
+                text: ""
+
+            Label:
+                size_hint_x: None
+                width: 10
+            Label:
+                size_hint_x: None
+                width: 10
+            Label:
+                size_hint_x: None
+                width: 10
+
+            Label:
+                size_hint_x: None
+                width: 10
+
+            Label:
+                color: 0.04, 0.306, 0.451, 1
+                text: "HORA"
+
+            TextInput:
+                id: hora_field
+                background_color: 0,6, 0.6, 0.6, 1
+                multiline: False
+                focus: True
+                hint_text: 'hh:mm'
+                text: ""
+
+            Label:
+                size_hint_x: None
+                width: 10
+            Label:
+                size_hint_x: None
+                width: 10
+            Label:
+                size_hint_x: None
+                width: 10
+
+
+            Label:
+                size_hint_x: None
+                width: 10
+
+            Label:
+                color: 0.04, 0.306, 0.451, 1
+                text: "NOMBRE DE PACIENTE"
+
+            TextInput:
+                id: paciente_field
+                background_color: 0,6, 0.6, 0.6, 1
+                multiline: False
                 focus: True
                 text: ""
 
@@ -1809,10 +2028,10 @@ WindowManager:
 
             Label:
                 color: 0.04, 0.306, 0.451, 1
-                text: "DOCTOR"
+                text: "NOMBRE DE DOCTOR"
 
             TextInput:
-                id: unidades_field
+                id: doctor_field
                 background_color: 0,6, 0.6, 0.6, 1
                 multiline: False
                 focus: True
@@ -1837,20 +2056,10 @@ WindowManager:
                 text: "DESCRIPCION"
 
             TextInput:
-                id: price_field
+                id: desc_field
                 background_color: 0,6, 0.6, 0.6, 1
                 multiline: False
                 text: ""
-
-            Label:
-                size_hint_x: None
-                width: 10
-            Label:
-                size_hint_x: None
-                width: 10
-            Label:
-                size_hint_x: None
-                width: 10
 
             Label:
                 size_hint_y: None
@@ -1869,7 +2078,7 @@ WindowManager:
 
 
         GridLayout:
-            cols: 3
+            cols:3
             size_hint_x: None
             width: 760
             size_hint_y: None
@@ -1886,7 +2095,7 @@ WindowManager:
                 text: "Regresar"
                 on_release:
                     root.manager.transition.direction = "right"
-                    app.root.current = 'citas'
+                    app.root.current = 'editc'
             Button:
                 background_color: 0.153, 0.675, 0.929, 1
                 font_size: 18
@@ -1898,9 +2107,9 @@ WindowManager:
 
         Label:
             size_hint_y: None
-            height: 20   
+            height: 20
 
-<TenthWindow>
+<EleventhWindow>
     name: "deletec"
     errM: errM
 

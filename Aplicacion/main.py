@@ -469,49 +469,15 @@ class NinthWindow(Screen):
     errM = ObjectProperty(None)
 
     def editCit(self):
-        self.errM.text = ''
-        nombr = self.ids.name_field.text
-        code = self.ids.code_field.text
         date = self.ids.date_field.text
-        price = self.ids.price_field.text
-        unidades = self.ids.unidades_field.text
-
-        #Inputs vacios o invalidos
+        time = self.ids.hora_field.text
+        nombr = self.ids.patient_field.text
+        
         inp = 0
+        
         if nombr == '':
             inp += 1
-        if code == '':
-            inp += 1
-        if unidades == '':
-            unidades = 0
-
-        esint = True
-        try:
-            int(unidades)
-        except ValueError:
-            esint = False
-            self.errM.text = 'Cantidad de unidades invalida'
-            inp += 1
         
-        if (esint):
-            if int(unidades) < 0:
-                self.errM.text = 'Cantidad de unidades invalida'
-                inp += 1
-        if price == '':
-            inp += 1
-        
-        esint2 = True
-        try:
-            float(price)
-        except ValueError:
-            esint2 = False
-            self.errM.text = 'Precio invalido'
-            inp += 1
-
-        if (esint2):
-            if float(price) < 0:
-                self.errM.text = 'Precio invalido'
-                inp += 1
         if date == '':
             inp += 1
         else:
@@ -534,23 +500,131 @@ class NinthWindow(Screen):
                     self.errM.text = 'Fecha invalida'
                     inp += 1
 
+        if time == '':
+            inp += 1
+        else:
+            try:
+                datetime.datetime.strptime(time, "%H:%M")
+            except ValueError:
+                self.errM.text = 'Hora invalida'
+                inp += 1
+
         if inp == 0:
-            cur.execute("SELECT * FROM medicamentos WHERE nombre = '" + str(nombr) + "'")
+            cur.execute("SELECT id FROM pacientes WHERE nombre = '" + str(nombr) + "'")
             opcion1 = cur.fetchall()
             if len(opcion1) == 0:
-                self.errM.text = 'No se encontro el medicamento'
+                self.errM.text = 'No se encontro el paciente indicado'
             else:
-                cur.execute("UPDATE medicamentos SET disponible = %s , precio = %s, vencimiento = %s, codigo = %s WHERE nombre = %s",
-                        (int(unidades), float(price),  str(date), str(code), str(nombr)))
-                con.commit()
+                pacienteid = opcion1[0][0]
+                #Verificar existe cita
+                day,month,year = date.split('/')
+                fecha = year + '-' + month + '-' + day
+                cur.execute("SELECT id FROM citas WHERE fecha = '" + fecha + "' and hora = '" + time + "' and pacienteid = " + str(pacienteid))
+                opcion1 = cur.fetchall()
+                if len(opcion1) > 0:
+                    citaid = opcion1[0][0]
+                    TenthWindow.citae = citaid
 
-                self.manager.transition.direction = "right"
-                self.manager.current = 'inventario'
+                    self.errM.text = ''
+                    self.manager.transition.direction = "left"
+                    self.manager.current = 'editci'
+                else:
+                    self.errM.text = 'No se encontro la cita'
         elif self.errM.text == '':
             self.errM.text = 'Por favor llene todos los campos requeridos'
 
-
 class TenthWindow(Screen):
+    #Editar cita
+    errM = ObjectProperty(None)
+    citae = ''
+
+    def editCit(self):
+        self.errM.text = ''
+        date = self.ids.fecha_field.text
+        time = self.ids.hora_field.text
+        paciente = self.ids.paciente_field.text
+        doctor = self.ids.doctor_field.text
+        desc = self.ids.desc_field.text
+
+        #Inputs vacios o invalidos
+        inp = 0
+        if paciente == '':
+            inp += 1
+        if doctor == '':
+            inp += 1
+        if desc == '':
+            inp += 1
+
+        if date == '':
+            inp += 1
+        else:
+            validFormat = True
+            try:
+                day,month,year = date.split('/')
+            except ValueError:
+                validFormat = False
+                self.errM.text = 'Fecha invalida'
+                inp += 1
+
+            if (validFormat):
+                isValidDate = True
+                try :
+                    datetime.datetime(int(year),int(month),int(day))
+                except ValueError :
+                    isValidDate = False
+
+                if isValidDate == False or int(year) < 2020:
+                    self.errM.text = 'Fecha invalida'
+                    inp += 1
+        
+        if time == '':
+            inp += 1
+        else:
+            try:
+                datetime.datetime.strptime(time, "%H:%M")
+            except ValueError:
+                self.errM.text = 'Hora invalida'
+                inp += 1
+
+        if inp == 0:
+            #Verificar que exista doctor y agarrar id
+            cur.execute("SELECT id FROM doctores WHERE nombre = '" + doctor + "'")
+            opcion1 = cur.fetchall()
+            if len(opcion1) > 0:
+                doctorid = opcion1[0][0]
+
+                #Verificar que exista paciente y agarrar id
+                cur.execute("SELECT id FROM pacientes WHERE nombre = '" + paciente + "'")
+                opcion1 = cur.fetchall()
+                if len(opcion1) > 0:
+                    pacienteid = opcion1[0][0]
+                    #Verificar que no hay cita
+                    day,month,year = date.split('/')
+                    fecha = year + '-' + month + '-' + day
+                    hour = int(time.split(':')[0])
+                    mintime = str(hour - 1) + ':00'
+                    maxtime = str(hour + 2) + ':00'
+                    cur.execute("SELECT COUNT(*) FROM citas WHERE fecha = '" + fecha + "' and hora > '" + mintime + "' and hora < '" + maxtime + "' and (doctorid = " + str(doctorid) + " or pacienteid = " + str(pacienteid) + ") and id != " + str(self.citae))
+                    opcion1 = cur.fetchall()
+                    s = str(opcion1)
+                    if s == '[(0,)]':
+                        
+                        cur.execute("UPDATE citas SET fecha = %s, hora = %s, descripcion = %s, pacienteid = %s, doctorid = %s WHERE id = %s",
+                                (str(fecha), str(time), str(desc), int(pacienteid), int(doctorid), int(self.citae)))
+                        con.commit()
+
+                        self.manager.transition.direction = "right"
+                        self.manager.current = 'citas'
+                    else:
+                        self.errM.text = 'El doctor no esta disponible o el paciente tiene otra cita durante ese tiempo'
+                else:
+                    self.errM.text = 'Paciente incorrecto o no esta registrado'
+            else:
+                self.errM.text = 'Doctor incorrecto o no esta registrado'
+        elif self.errM.text == '':
+            self.errM.text = 'Por favor llene todos los campos requeridos'
+
+class EleventhWindow(Screen):
     #Eliminar cita
     errM = ObjectProperty(None)
 
