@@ -11,6 +11,8 @@ WindowManager:
     NinthWindow:
     TenthWindow:
     EleventhWindow:
+    TwelveWindow:
+    ThirteenWindow:
 
 <MainWindow>:
     name: "log"
@@ -1466,24 +1468,24 @@ WindowManager:
 
         Label:
             size_hint_y: None
-            height: 10
+            height: 5
 
         GridLayout:
             cols: 2
             size_hint_x: None
             width: 670
             size_hint_y: None
-            height: 250
+            height: 200
 
             Label:
                 size_hint_x: None
-                width: 370
+                width: 385
 
             Image:
                 size_hint_y: None
-                height: 190
+                height: 140
                 size_hint_x: None
-                width: 380
+                width: 350
                 source: "Images/clinica.png"
                 allow_stretch: True
 
@@ -1623,16 +1625,6 @@ WindowManager:
                 text: ""
 
             Label:
-                size_hint_x: None
-                width: 10
-            Label:
-                size_hint_x: None
-                width: 10
-            Label:
-                size_hint_x: None
-                width: 10
-
-            Label:
                 size_hint_y: None
                 height: 5
             Label:
@@ -1653,7 +1645,7 @@ WindowManager:
             size_hint_x: None
             width: 760
             size_hint_y: None
-            height: 50
+            height: 110
 
             Label:
 
@@ -1675,6 +1667,41 @@ WindowManager:
                 text: "Agregar"
                 on_release:
                     root.addCit()
+            
+            Label:
+                size_hint_y: None
+                height: 10
+                size_hint_x: None
+                width: 350
+            Label:
+                size_hint_y: None
+                height: 10
+            Label:
+                size_hint_y: None
+                height: 10
+
+            Label:
+
+                text: ""
+            Button:
+                background_color: 0.153, 0.675, 0.929, 1
+                font_size: 18
+                size_hint_x: None
+                width: 200
+                text: "Agregar Paciente"
+                on_release:
+                    root.manager.transition.direction = "left"
+                    app.root.current = 'addp'
+
+            Button:
+                background_color: 0.153, 0.675, 0.929, 1
+                font_size: 18
+                size_hint_x: None
+                width: 200
+                text: "Agregar Doctor"
+                on_release:
+                    root.manager.transition.direction = "left"
+                    app.root.current = 'addd'
 
         Label:
             size_hint_y: None
@@ -1825,7 +1852,7 @@ WindowManager:
             size_hint_x: None
             width: 760
             size_hint_y: None
-            height: 110
+            height: 50
 
             Label:
 
@@ -1847,40 +1874,7 @@ WindowManager:
                 text: "Continuar"
                 on_release:
                     root.editCit()
-            
-            Label:
-                size_hint_y: None
-                height: 10
-                size_hint_x: None
-                width: 350
-            Label:
-                size_hint_y: None
-                height: 10
-            Label:
-                size_hint_y: None
-                height: 10
-
-            Label:
-
-                text: ""
-            Button:
-                background_color: 0.153, 0.675, 0.929, 1
-                font_size: 18
-                size_hint_x: None
-                width: 200
-                text: "Agregar Paciente"
-                on_release:
-                    root.editCit()
-
-            Button:
-                background_color: 0.153, 0.675, 0.929, 1
-                font_size: 18
-                size_hint_x: None
-                width: 200
-                text: "Agregar Doctor"
-                on_release:
-                    root.manager.transition.direction = "right"
-                    app.root.current = 'citas'
+        
 
         Label:
             size_hint_y: None
@@ -2110,6 +2104,350 @@ WindowManager:
             height: 20
 
 <EleventhWindow>
+    name: "addp"
+    errM: errM
+
+    GridLayout:
+        cols: 1
+
+        Label:
+            size_hint_y: None
+            height: 50
+
+        GridLayout:
+            cols: 2
+            size_hint_x: None
+            width: 670
+            size_hint_y: None
+            height: 250
+
+            Label:
+                size_hint_x: None
+                width: 370
+
+            Image:
+                size_hint_y: None
+                height: 190
+                size_hint_x: None
+                width: 380
+                source: "Images/clinica.png"
+                allow_stretch: True
+
+            Label:
+                size_hint_y: None
+                height: 20
+            Label:
+                size_hint_y: None
+                height: 10
+
+            Label:
+                size_hint_y: None
+                height: 10
+            
+            Label:
+                color: 0.04, 0.306, 0.451, 1
+                font_size: 22
+                text: 'Agregar Paciente'
+            
+            Label:
+                size_hint_y: None
+                height: 20
+            Label:
+                size_hint_y: None
+                height: 10
+
+        GridLayout:
+            cols: 3
+            size_hint_x: None
+            width: 670
+            size_hint_y: None
+            height: 200
+
+            Label:
+                size_hint_x: None
+                width: 10
+
+            Label:
+                color: 0.04, 0.306, 0.451, 1
+                text: "NOMBRES"
+
+            TextInput:
+                id: name_field
+                background_color: 0,6, 0.6, 0.6, 1
+                multiline: False
+                focus: True
+                text: ""
+
+            Label:
+                size_hint_x: None
+                width: 10
+            Label:
+                size_hint_x: None
+                width: 10
+            Label:
+                size_hint_x: None
+                width: 10
+
+            Label:
+                size_hint_x: None
+                width: 10
+
+            Label:
+                color: 0.04, 0.306, 0.451, 1
+                text: "TELEFONO"
+
+            TextInput:
+                id: tel_field
+                background_color: 0,6, 0.6, 0.6, 1
+                multiline: False
+                focus: True
+                text: ""
+
+            Label:
+                size_hint_x: None
+                width: 10
+            Label:
+                size_hint_x: None
+                width: 10
+            Label:
+                size_hint_x: None
+                width: 10
+
+
+            Label:
+                size_hint_y: None
+                height: 5
+            Label:
+                text: ""
+
+            Label:
+                color: 1, 0, 0, 1
+                id: errM
+                text: ""
+
+            Label:
+                size_hint_y: None
+                height: 5
+
+
+        GridLayout:
+            cols: 3
+            size_hint_x: None
+            width: 760
+            size_hint_y: None
+            height: 50
+
+            Label:
+
+                text: ""
+            Button:
+                background_color: 0.153, 0.675, 0.929, 1
+                font_size: 18
+                size_hint_x: None
+                width: 200
+                text: "Regresar"
+                on_release:
+                    root.manager.transition.direction = "right"
+                    app.root.current = 'addc'
+            Button:
+                background_color: 0.153, 0.675, 0.929, 1
+                font_size: 18
+                size_hint_x: None
+                width: 200
+                text: "Agregar"
+                on_release:
+                    root.addP()
+        
+
+        Label:
+            size_hint_y: None
+            height: 20   
+
+<TwelveWindow>
+    name: "addd"
+    errM: errM
+
+    GridLayout:
+        cols: 1
+
+        Label:
+            size_hint_y: None
+            height: 50
+
+        GridLayout:
+            cols: 2
+            size_hint_x: None
+            width: 670
+            size_hint_y: None
+            height: 250
+
+            Label:
+                size_hint_x: None
+                width: 370
+
+            Image:
+                size_hint_y: None
+                height: 190
+                size_hint_x: None
+                width: 380
+                source: "Images/clinica.png"
+                allow_stretch: True
+
+            Label:
+                size_hint_y: None
+                height: 20
+            Label:
+                size_hint_y: None
+                height: 10
+
+            Label:
+                size_hint_y: None
+                height: 10
+            
+            Label:
+                color: 0.04, 0.306, 0.451, 1
+                font_size: 22
+                text: 'Agregar Doctor'
+            
+            Label:
+                size_hint_y: None
+                height: 20
+            Label:
+                size_hint_y: None
+                height: 10
+
+        GridLayout:
+            cols: 3
+            size_hint_x: None
+            width: 670
+            size_hint_y: None
+            height: 250
+
+            Label:
+                size_hint_x: None
+                width: 10
+
+            Label:
+                color: 0.04, 0.306, 0.451, 1
+                text: "NOMBRES"
+
+            TextInput:
+                id: name_field
+                background_color: 0,6, 0.6, 0.6, 1
+                multiline: False
+                focus: True
+                text: ""
+
+            Label:
+                size_hint_x: None
+                width: 10
+            Label:
+                size_hint_x: None
+                width: 10
+            Label:
+                size_hint_x: None
+                width: 10
+
+            Label:
+                size_hint_x: None
+                width: 10
+
+            Label:
+                color: 0.04, 0.306, 0.451, 1
+                text: "TELEFONO"
+
+            TextInput:
+                id: tel_field
+                background_color: 0,6, 0.6, 0.6, 1
+                multiline: False
+                focus: True
+                text: ""
+
+            Label:
+                size_hint_x: None
+                width: 10
+            Label:
+                size_hint_x: None
+                width: 10
+            Label:
+                size_hint_x: None
+                width: 10
+
+            Label:
+                size_hint_x: None
+                width: 10
+
+            Label:
+                color: 0.04, 0.306, 0.451, 1
+                text: "ESPECIALIZACION"
+
+            TextInput:
+                id: esp_field
+                background_color: 0,6, 0.6, 0.6, 1
+                multiline: False
+                focus: True
+                text: ""
+
+            Label:
+                size_hint_x: None
+                width: 10
+            Label:
+                size_hint_x: None
+                width: 10
+            Label:
+                size_hint_x: None
+                width: 10
+
+            Label:
+                size_hint_y: None
+                height: 5
+            Label:
+                text: ""
+
+            Label:
+                color: 1, 0, 0, 1
+                id: errM
+                text: ""
+
+            Label:
+                size_hint_y: None
+                height: 5
+
+
+        GridLayout:
+            cols: 3
+            size_hint_x: None
+            width: 760
+            size_hint_y: None
+            height: 50
+
+            Label:
+
+                text: ""
+            Button:
+                background_color: 0.153, 0.675, 0.929, 1
+                font_size: 18
+                size_hint_x: None
+                width: 200
+                text: "Regresar"
+                on_release:
+                    root.manager.transition.direction = "right"
+                    app.root.current = 'addc'
+            Button:
+                background_color: 0.153, 0.675, 0.929, 1
+                font_size: 18
+                size_hint_x: None
+                width: 200
+                text: "Agregar"
+                on_release:
+                    root.addD()
+        
+
+        Label:
+            size_hint_y: None
+            height: 20   
+
+<ThirteenWindow>
     name: "deletec"
     errM: errM
 

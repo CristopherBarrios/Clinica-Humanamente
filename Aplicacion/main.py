@@ -625,6 +625,92 @@ class TenthWindow(Screen):
             self.errM.text = 'Por favor llene todos los campos requeridos'
 
 class EleventhWindow(Screen):
+    #Agregar paciente
+    errM = ObjectProperty(None)
+
+    def addP(self):
+        nombr = self.ids.name_field.text
+        tel = self.ids.tel_field.text
+
+        inp = 0
+        if nombr == '':
+            inp += 1
+        
+        if tel == '':
+            inp += 1
+        else:
+            try:
+                int(tel)
+            except ValueError:
+                self.errM.text = 'Telefono invalido (solo numeros)'
+                inp += 1
+
+        if inp == 0:
+            cur.execute("SELECT id FROM pacientes WHERE nombre = '" + str(nombr) + "'")
+            opcion1 = cur.fetchall()
+            if len(opcion1) > 0:
+                self.errM.text = 'Ese paciente ya esta registrado'
+            else:
+                cur.execute(
+                    "SELECT MAX(id) + 1 FROM pacientes")
+                opcion3 = cur.fetchall()
+                pacid = opcion3[0][0]
+                cur.execute("INSERT INTO pacientes VALUES(%s, %s, false, %s)", (pacid, nombr, tel))
+                con.commit()
+
+                self.errM.text = ''
+                self.manager.transition.direction = "right"
+                self.manager.current = 'citas'
+
+        elif self.errM.text == '':
+            self.errM.text = 'Por favor llene todos los campos requeridos'
+
+
+class TwelveWindow(Screen):
+    #Agregar doctor
+    errM = ObjectProperty(None)
+
+    def addD(self):
+        nombr = self.ids.name_field.text
+        tel = self.ids.tel_field.text
+        esp = self.ids.esp_field.text
+
+        inp = 0
+        if nombr == '':
+            inp += 1
+        if esp == '':
+            inp += 1
+        
+        if tel == '':
+            inp += 1
+        else:
+            try:
+                int(tel)
+            except ValueError:
+                self.errM.text = 'Telefono invalido (solo numeros)'
+                inp += 1
+
+        if inp == 0:
+            cur.execute("SELECT id FROM doctores WHERE nombre = '" + str(nombr) + "'")
+            opcion1 = cur.fetchall()
+            if len(opcion1) > 0:
+                self.errM.text = 'Ese doctor ya esta registrado'
+            else:
+                cur.execute(
+                    "SELECT MAX(id) + 1 FROM doctores")
+                opcion3 = cur.fetchall()
+                pacid = opcion3[0][0]
+                cur.execute("INSERT INTO doctores VALUES(%s, %s, %s, %s)", (pacid, nombr, tel, esp))
+                con.commit()
+
+                self.errM.text = ''
+                self.manager.transition.direction = "right"
+                self.manager.current = 'citas'
+
+        elif self.errM.text == '':
+            self.errM.text = 'Por favor llene todos los campos requeridos'
+
+class ThirteenWindow(Screen):
     #Eliminar cita
     errM = ObjectProperty(None)
 
